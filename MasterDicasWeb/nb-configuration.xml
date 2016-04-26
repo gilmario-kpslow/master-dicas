@@ -24,7 +24,5 @@
         <org-netbeans-modules-web-clientproject-api.js_2e_libs_2e_folder>js/libs</org-netbeans-modules-web-clientproject-api.js_2e_libs_2e_folder>
         <org-netbeans-modules-javascript2-requirejs.enabled>true</org-netbeans-modules-javascript2-requirejs.enabled>
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>WildFly</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
-        <org-netbeans-modules-maven-jaxws._5f_C_5f_DicaServico>http://localhost:8080/WebService-1.0-SNAPSHOT/DicaWS/DicaServico?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_DicaServico>
-        <org-netbeans-modules-maven-jaxws._5f_C_5f_TagServico>http://localhost:8080/WebService-1.0-SNAPSHOT/TagWS/TagServico?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_TagServico>
     </properties>
 </project-shared-configuration>

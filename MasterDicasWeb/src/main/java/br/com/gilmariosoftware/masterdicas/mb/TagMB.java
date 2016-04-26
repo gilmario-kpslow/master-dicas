@@ -1,7 +1,7 @@
 package br.com.gilmariosoftware.masterdicas.mb;
 
-import br.com.gilmariosoftware.masterdicas.servico.cliente.TagWSCliente;
-import br.com.gilmariosoftware.masterdicas.servico.cliente.tags.Tag;
+import br.com.gilmariosoftware.masterdicas.servico.cliente.DicaWSCliente;
+import br.com.gilmariosoftware.masterdicas.servico.cliente.Tag;
 import br.com.gilmariosoftware.masterdicas.util.GeradorMensagem;
 import java.io.Serializable;
 import java.util.List;
@@ -18,7 +18,7 @@ import javax.inject.Named;
 public class TagMB implements Serializable {
 
     @EJB
-    private TagWSCliente servico;
+    private DicaWSCliente servico;
     private Tag tag = new Tag();
     private List<Tag> listaDeTags;
     private String nome = "";

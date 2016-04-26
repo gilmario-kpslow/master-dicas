@@ -81,63 +81,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.jvnet.jax-ws-commons</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <version>2.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_8080/WebService-1.0-SNAPSHOT/DicaWS/DicaServico.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>br.com.gilmariosoftware.masterdicas.servico.cliente.dicas</packageName>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <wsdlLocation>http://localhost:8080/WebService-1.0-SNAPSHOT/DicaWS/DicaServico?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/DicaServico.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-DicaServico</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_8080/WebService-1.0-SNAPSHOT/TagWS/TagServico.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>br.com.gilmariosoftware.masterdicas.servico.cliente.tags</packageName>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <wsdlLocation>http://localhost:8080/WebService-1.0-SNAPSHOT/TagWS/TagServico?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/TagServico.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-TagServico</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>javax.xml</groupId>
-                        <artifactId>webservices-api</artifactId>
-                        <version>2.0</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
-                    <xnocompile>true</xnocompile>
-                    <verbose>true</verbose>
-                    <extension>true</extension>
-                    <catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>

@@ -1,8 +1,8 @@
 package br.com.gilmariosoftware.masterdicas.mb;
 
+import br.com.gilmariosoftware.masterdicas.servico.cliente.Dica;
 import br.com.gilmariosoftware.masterdicas.servico.cliente.DicaWSCliente;
-import br.com.gilmariosoftware.masterdicas.servico.cliente.dicas.Dica;
-import br.com.gilmariosoftware.masterdicas.servico.cliente.dicas.Tag;
+import br.com.gilmariosoftware.masterdicas.servico.cliente.Tag;
 import br.com.gilmariosoftware.masterdicas.util.GeradorMensagem;
 import java.io.Serializable;
 import java.util.List;
@@ -51,10 +51,8 @@ public class DicaMB implements Serializable {
         }
     }
 
-    public void adicionaTag(br.com.gilmariosoftware.masterdicas.servico.cliente.tags.Tag tag) {
-        Tag t = new Tag();
-        tag.setNome(tag.getNome());
-        dica.getTags().add(t);
+    public void adicionaTag(Tag tag) {
+        dica.getTags().add(tag);
     }
 
     public void buscarDicas() {

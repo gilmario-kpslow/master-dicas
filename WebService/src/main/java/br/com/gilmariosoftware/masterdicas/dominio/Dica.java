@@ -1,6 +1,5 @@
 package br.com.gilmariosoftware.masterdicas.dominio;
 
-import br.com.gilmariosoftware.masterdicas.servico.ListaDeTag;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -48,9 +46,9 @@ public class Dica implements Serializable {
     private String descricao;
     @Enumerated(EnumType.STRING)
     private StatusDica statusDica;
-    @Column(nullable = false, length = 100000)
-    private String obervacao;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(length = 100000)
+    private String observacao;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     private final List<Tag> tags;
 
     public Dica() {
@@ -126,12 +124,12 @@ public class Dica implements Serializable {
         this.statusDica = statusDica;
     }
 
-    public String getObervacao() {
-        return obervacao;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setObervacao(String obervacao) {
-        this.obervacao = obervacao;
+    public void setObervacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public enum StatusDica {

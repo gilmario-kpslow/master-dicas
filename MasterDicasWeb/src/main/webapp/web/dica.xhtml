@@ -7,7 +7,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="conteudo">
-        <h:form>
+        <h:form prependId="false">
             <t:outputMensagens />
             <t:panel titulo="Registrar Dica">
                 <div class="row">
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-12">
-                        <h:outputLabel value="Descrição" for="descreva" styleClass="label label-primary"/>
+                        <h:outputLabel value="Descrição" for="descricao" styleClass="label label-primary"/>
                         <h:message for="descricao" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
                         <div>
                             <h:inputTextarea value="#{dicaMB.dica.descricao}" id="descricao" requiredMessage="Descreva alguma coisa" required="true" styleClass="form-control"/>
@@ -49,9 +49,12 @@
                         <h:outputLabel value="Tags" styleClass="label label-primary"/>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                                <ui:repeat value="#{dicaMB.dica.tags}" var="tag">
-                                    <h:outputText value="#{tag.nome}" styleClass="badge"/>
-                                </ui:repeat>
+
+                                <h:panelGrid id="tags">
+                                    <ui:repeat value="#{dicaMB.dica.tags}" var="tag">
+                                        <h:outputText value="#{tag.nome}" styleClass="badge tag-nome"/>
+                                    </ui:repeat>
+                                </h:panelGrid>
                             </div>
                         </div>
                     </div>
@@ -96,7 +99,7 @@
                                         </f:facet>
                                         <h:commandLink onclick="$('#tagdialog').modal('hide');">
                                             <span class="fa fa-plus"></span>
-                                            <f:ajax event="click" execute="@this" render="@form" listener="#{dicaMB.adicionaTag(elemento)}" />
+                                            <f:ajax event="click" execute="@this" render="@all" listener="#{dicaMB.adicionaTag(elemento)}" />
                                         </h:commandLink>
                                     </h:column>
                                 </div>

@@ -3,6 +3,7 @@ package br.com.gilmariosoftware.masterdicas.servico;
 import br.com.gilmariosoftware.masterdicas.dominio.Dica;
 import br.com.gilmariosoftware.masterdicas.dominio.Tag;
 import br.com.gilmariosoftware.masterdicas.negocio.DicaNegocio;
+import br.com.gilmariosoftware.masterdicas.negocio.TagNegocio;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -20,7 +21,7 @@ public class DicaServico implements DicaServicoInterface {
     private DicaNegocio negocio;
 
     @Override
-    public ListaDeDicas buscar(List<Tag> tags, String titulo) throws FaultException {
+    public ListaDeDicas buscarDicas(List<Tag> tags, String titulo) throws FaultException {
         try {
             return new ListaDeDicas(negocio.buscarPor(tags, titulo));
         } catch (Exception e) {
@@ -56,4 +57,34 @@ public class DicaServico implements DicaServicoInterface {
         }
     }
 
+    @EJB
+    private TagNegocio tagNegocio;
+
+    @Override
+    public ListaDeTag buscarTags(String nome) throws FaultException {
+        try {
+            return new ListaDeTag(tagNegocio.buscarPor(nome));
+        } catch (Exception e) {
+            throw new FaultException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Tag adicionarTag(Tag tag) throws FaultException {
+        try {
+            return tagNegocio.adicionarTag(tag);
+        } catch (Exception e) {
+            throw new FaultException(e.getMessage());
+        }
+    }
+
+    @Override
+    public String removerTag(Tag tag) throws FaultException {
+        try {
+            tagNegocio.removerTag(tag);
+            return "Tag removida com sucesso!!!";
+        } catch (Exception e) {
+            throw new FaultException(e.getMessage());
+        }
+    }
 }

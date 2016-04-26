@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/WebService-1.0-SNAPSHOT/DicaWS/DicaServico?wsdl" uri="wsdl/localhost_8080/WebService-1.0-SNAPSHOT/DicaWS/DicaServico.wsdl"/>
-    <system systemId="http://localhost:8080/WebService-1.0-SNAPSHOT/DicaWS/DicaServico?wsdl=DicaServicoInterface.wsdl" uri="wsdl/localhost_8080/WebService-1.0-SNAPSHOT/DicaWS/DicaServico.wsdl_DicaServicoInterface.wsdl"/>
-    <system systemId="http://localhost:8080/WebService-1.0-SNAPSHOT/TagWS/TagServico?wsdl" uri="wsdl/localhost_8080/WebService-1.0-SNAPSHOT/TagWS/TagServico.wsdl"/>
-    <system systemId="http://localhost:8080/WebService-1.0-SNAPSHOT/TagWS/TagServico?wsdl=TagServicoInterface.wsdl" uri="wsdl/localhost_8080/WebService-1.0-SNAPSHOT/TagWS/TagServico.wsdl_TagServicoInterface.wsdl"/>
-</catalog>
