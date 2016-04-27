@@ -23,6 +23,12 @@ public interface DicaServicoInterface {
     @ResponseWrapper(localName = "BuscarDicasResponse")
     public ListaDeDicas buscarDicas(@WebParam(partName = "tags", name = "tags") List<Tag> tags, @WebParam(partName = "titulo", name = "titulo") String titulo) throws FaultException;
 
+    @WebResult(name = "dicas")
+    @RequestWrapper(localName = "BuscarUltimasDicas")
+    @WebMethod(operationName = "BuscarUltimasDicas")
+    @ResponseWrapper(localName = "BuscarUltimasDicasResponse")
+    public ListaDeDicas buscarUltimasDicas() throws FaultException;
+
     @WebResult(name = "dica")
     @RequestWrapper(localName = "AdicionarDica")
     @WebMethod(operationName = "AdicionarDica")

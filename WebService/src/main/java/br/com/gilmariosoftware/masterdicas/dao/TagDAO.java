@@ -1,7 +1,7 @@
 package br.com.gilmariosoftware.masterdicas.dao;
 
 import br.com.gilmariosoftware.masterdicas.dominio.Tag;
-//import br.com.gilmariosoftware.masterdicas.dominio.Tag_;
+import br.com.gilmariosoftware.masterdicas.dominio.Tag_;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -17,6 +17,6 @@ import org.hibernate.criterion.Restrictions;
 public class TagDAO extends DAO<Tag, String> implements Serializable {
 
     public List<Tag> buscarPor(String nome) {
-        return getSession().createCriteria(Tag.class).add(Restrictions.ilike("nome", nome, MatchMode.START)).addOrder(Order.asc("nome")).list();
+        return getSession().createCriteria(Tag.class).add(Restrictions.ilike(Tag_.nome.getName(), nome, MatchMode.START)).addOrder(Order.asc(Tag_.nome.getName())).list();
     }
 }

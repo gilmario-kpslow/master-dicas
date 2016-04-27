@@ -31,6 +31,8 @@ public class ObjectFactory {
     private final static QName _AdicionarTagResponse_QNAME = new QName("http://mestredasdicas-gilserver.openshift.com", "AdicionarTagResponse");
     private final static QName _AlterarDica_QNAME = new QName("http://mestredasdicas-gilserver.openshift.com", "AlterarDica");
     private final static QName _BuscarDicas_QNAME = new QName("http://mestredasdicas-gilserver.openshift.com", "BuscarDicas");
+    private final static QName _BuscarUltimasDicas_QNAME = new QName("http://mestredasdicas-gilserver.openshift.com", "BuscarUltimasDicas");
+    private final static QName _BuscarUltimasDicasResponse_QNAME = new QName("http://mestredasdicas-gilserver.openshift.com", "BuscarUltimasDicasResponse");
     private final static QName _BuscarTags_QNAME = new QName("http://mestredasdicas-gilserver.openshift.com", "BuscarTags");
     private final static QName _RemoverDica_QNAME = new QName("http://mestredasdicas-gilserver.openshift.com", "RemoverDica");
     private final static QName _RemoverTag_QNAME = new QName("http://mestredasdicas-gilserver.openshift.com", "RemoverTag");
@@ -57,6 +59,15 @@ public class ObjectFactory {
      */
     public BuscarDicas createBuscarDicas() {
         return new BuscarDicas();
+    }
+
+    /**
+     * Create an instance of {@link BuscarUltimasDicas }
+     *
+     * @return
+     */
+    public BuscarUltimasDicas createBuscarUltimasDicas() {
+        return new BuscarUltimasDicas();
     }
 
     /**
@@ -168,6 +179,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link BuscarDicasUltimasResponse }
+     *
+     * @return
+     */
+    public BuscarUltimasDicasResponse createBuscarUltimasDicasResponse() {
+        return new BuscarUltimasDicasResponse();
+    }
+
+    /**
      * Create an instance of {@link BuscarTagsResponse }
      *
      * @return
@@ -226,13 +246,25 @@ public class ObjectFactory {
 
     /**
      * Create an instance of
+     * {@link JAXBElement }{@code <}{@link BuscarUltimasDicasResponse }{@code >}}
+     *
+     * @param value
+     * @return
+     */
+    @XmlElementDecl(namespace = "http://mestredasdicas-gilserver.openshift.com", name = "BuscarUltimasDicasResponse")
+    public JAXBElement<BuscarUltimasDicasResponse> createBuscarUltimasDicasResponse(BuscarUltimasDicasResponse value) {
+        return new JAXBElement<>(_BuscarUltimasDicasResponse_QNAME, BuscarUltimasDicasResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of
      * {@link JAXBElement }{@code <}{@link BuscarTagsResponse }{@code >}}
      *
      * @param value
      * @return
      */
     @XmlElementDecl(namespace = "http://mestredasdicas-gilserver.openshift.com", name = "BuscarTagsResponse")
-    public JAXBElement<BuscarTagsResponse> createBuscarDicasResponse(BuscarTagsResponse value) {
+    public JAXBElement<BuscarTagsResponse> createBuscarTagsResponse(BuscarTagsResponse value) {
         return new JAXBElement<>(_BuscarTagsResponse_QNAME, BuscarTagsResponse.class, null, value);
     }
 
@@ -333,13 +365,25 @@ public class ObjectFactory {
 
     /**
      * Create an instance of
+     * {@link JAXBElement }{@code <}{@link BuscarUltimasDicas }{@code >}}
+     *
+     * @param value
+     * @return
+     */
+    @XmlElementDecl(namespace = "http://mestredasdicas-gilserver.openshift.com", name = "BuscarUltimasDicas")
+    public JAXBElement<BuscarUltimasDicas> createBuscarUltimasDicas(BuscarUltimasDicas value) {
+        return new JAXBElement<>(_BuscarUltimasDicas_QNAME, BuscarUltimasDicas.class, null, value);
+    }
+
+    /**
+     * Create an instance of
      * {@link JAXBElement }{@code <}{@link BuscarTags }{@code >}}
      *
      * @param value
      * @return
      */
     @XmlElementDecl(namespace = "http://mestredasdicas-gilserver.openshift.com", name = "BuscarTags")
-    public JAXBElement<BuscarTags> createBuscarDicas(BuscarTags value) {
+    public JAXBElement<BuscarTags> createBuscarTags(BuscarTags value) {
         return new JAXBElement<>(_BuscarTags_QNAME, BuscarTags.class, null, value);
     }
 

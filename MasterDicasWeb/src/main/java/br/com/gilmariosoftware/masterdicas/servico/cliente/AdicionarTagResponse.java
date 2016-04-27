@@ -37,7 +37,7 @@ public class AdicionarTagResponse {
     /**
      * Obtém o valor da propriedade tag.
      *
-     * @return possible object is {@link tag }
+     * @return possible object is {@link Tag }
      *
      */
     public Tag getTag() {
@@ -47,7 +47,7 @@ public class AdicionarTagResponse {
     /**
      * Define o valor da propriedade tag.
      *
-     * @param value allowed object is {@link tag }
+     * @param value allowed object is {@link Tag }
      *
      */
     public void setTag(Tag value) {

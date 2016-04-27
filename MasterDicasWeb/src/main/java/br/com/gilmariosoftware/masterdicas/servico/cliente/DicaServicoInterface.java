@@ -53,6 +53,19 @@ public interface DicaServicoInterface {
 
     /**
      *
+     *
+     * @return returns
+     * br.com.gilmariosoftware.masterdicas.servico.cliente.ListaDeDicas
+     * @throws FaultException
+     */
+    @WebMethod(operationName = "BuscarUltimasDicas")
+    @WebResult(name = "dicas", targetNamespace = "")
+    @RequestWrapper(localName = "BuscarUltimasDicas", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.BuscarUltimasDicas")
+    @ResponseWrapper(localName = "BuscarUltimasDicasResponse", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.BuscarUltimasDicasResponse")
+    public ListaDeDicas buscarUltimasDicas() throws FaultException;
+
+    /**
+     *
      * @param nome
      * @return returns
      * br.com.gilmariosoftware.masterdicas.servico.cliente.ListaDeTags
@@ -110,7 +123,7 @@ public interface DicaServicoInterface {
 
     /**
      *
-     * @param tag
+     * @param arg0
      * @return returns br.com.gilmariosoftware.masterdicas.servico.cliente.Tag
      * @throws FaultException
      */
@@ -119,7 +132,7 @@ public interface DicaServicoInterface {
     @RequestWrapper(localName = "AdicionarTag", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.AdicionarTag")
     @ResponseWrapper(localName = "AdicionarTagResponse", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.AdicionarTagResponse")
     public Tag adicionarTag(
-            @WebParam(name = "tag", targetNamespace = "") Tag tag)
+            @WebParam(name = "arg0", targetNamespace = "") Tag arg0)
             throws FaultException;
 
 }
