@@ -6,7 +6,7 @@ import javax.xml.ws.WebFault;
  *
  * @author gilmario
  */
-@WebFault(name = "Fault")
+@WebFault(name = "Fault", faultBean = "Fault")
 public class FaultException extends Exception {
 
     public FaultException() {
