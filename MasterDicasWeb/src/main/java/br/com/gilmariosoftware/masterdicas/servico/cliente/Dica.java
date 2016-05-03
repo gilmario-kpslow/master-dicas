@@ -1,6 +1,7 @@
 package br.com.gilmariosoftware.masterdicas.servico.cliente;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -245,12 +246,24 @@ public class Dica {
      * Objects of the following type(s) are allowed in the list {@link Tag }
      *
      *
+     * @return
      */
     public List<Tag> getTags() {
         if (tags == null) {
-            tags = new ArrayList<Tag>();
+            tags = new ArrayList<>();
         }
         return this.tags;
+    }
+
+    public String getSimpleDescricao() {
+        if (this.descricao != null) {
+            if (this.descricao.length() >= 15) {
+                return this.descricao.substring(0, 15).concat("...");
+            } else {
+                return this.descricao.concat("...");
+            }
+        }
+        return this.descricao;
     }
 
 }

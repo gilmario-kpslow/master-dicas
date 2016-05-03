@@ -37,4 +37,8 @@ public class DicaNegocio implements Serializable {
         return dao.buscarPor(tags, titulo);
     }
 
+    public List<Dica> ultimasDicas() throws Exception {
+        return dao.buscarUltimas();
+    }
+
 }

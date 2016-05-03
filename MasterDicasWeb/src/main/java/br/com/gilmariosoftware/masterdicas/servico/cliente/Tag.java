@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>
- * Classe Java de Tag complex type.
+ * Classe Java de tag complex type.
  *
  * <p>
  * O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro

@@ -37,7 +37,7 @@ public class Dica implements Serializable {
     @Column(nullable = false, unique = true)
     private String titulo;
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataCadastro;
     private String autor;
     @Column(length = 1000)

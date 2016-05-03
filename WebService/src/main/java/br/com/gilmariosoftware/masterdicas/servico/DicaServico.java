@@ -30,6 +30,15 @@ public class DicaServico implements DicaServicoInterface {
     }
 
     @Override
+    public ListaDeDicas buscarUltimasDicas() throws FaultException {
+        try {
+            return new ListaDeDicas(negocio.ultimasDicas());
+        } catch (Exception e) {
+            throw new FaultException(e.getMessage());
+        }
+    }
+
+    @Override
     public Dica adicionarDica(Dica dica) throws FaultException {
         try {
             return negocio.adicionarDica(dica);

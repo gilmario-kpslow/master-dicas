@@ -1,8 +1,8 @@
 package br.com.gilmariosoftware.masterdicas.dao;
 
 import br.com.gilmariosoftware.masterdicas.dominio.Dica;
+import br.com.gilmariosoftware.masterdicas.dominio.Dica_;
 import br.com.gilmariosoftware.masterdicas.dominio.Tag;
-//import br.com.gilmariosoftware.masterdicas.dominio.Tag_;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -19,8 +19,18 @@ import org.hibernate.criterion.Restrictions;
 public class DicaDAO extends DAO<Dica, Long> implements Serializable {
 
     public List<Dica> buscarPor(List<Tag> tags, String titulo) {
-        return getSession().createCriteria(Dica.class).add(Restrictions.ilike("titulo", titulo, MatchMode.START))
-                //                .add(Criteria)
-                .addOrder(Order.asc("titulo")).list();
+        return getSession().createCriteria(Dica.class)
+                .add(Restrictions.ilike(Dica_.titulo.getName(), titulo, MatchMode.START))
+                .addOrder(Order.asc(Dica_.titulo.getName()))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .list();
+    }
+
+    public List<Dica> buscarUltimas() {
+        return getSession().createCriteria(Dica.class)
+                .addOrder(Order.desc(Dica_.dataCadastro.getName()))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .setMaxResults(25)
+                .list();
     }
 }
