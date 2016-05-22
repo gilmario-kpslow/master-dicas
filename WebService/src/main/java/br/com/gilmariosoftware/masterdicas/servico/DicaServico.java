@@ -79,6 +79,15 @@ public class DicaServico implements DicaServicoInterface {
     }
 
     @Override
+    public ListaDeTag paginar(String nome, int inicio, int quantidade) throws FaultException {
+        try {
+            return new ListaDeTag(tagNegocio.paginar(nome, inicio, quantidade));
+        } catch (Exception e) {
+            throw new FaultException(e.getMessage());
+        }
+    }
+
+    @Override
     public Tag adicionarTag(Tag tag) throws FaultException {
         try {
             return tagNegocio.adicionarTag(tag);

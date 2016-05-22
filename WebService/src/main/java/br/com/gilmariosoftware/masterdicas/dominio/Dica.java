@@ -20,6 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,6 +37,7 @@ public class Dica implements Serializable {
     private Long id;
     @Column(nullable = false, unique = true)
     private String titulo;
+    @XmlElement(required = true)
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataCadastro;

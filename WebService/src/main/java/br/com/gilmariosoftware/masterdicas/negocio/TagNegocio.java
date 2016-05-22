@@ -33,4 +33,11 @@ public class TagNegocio implements Serializable {
         return dao.buscarPor(nome);
     }
 
+    public List<Tag> paginar(String nome, int inicio, int quantidade) throws Exception {
+        if (nome == null) {
+            nome = "";
+        }
+        return dao.paginar(nome, inicio, quantidade);
+    }
+
 }

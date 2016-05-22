@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://mestredasdicas-gilserver.openshift.com}tag" minOccurs="0"/>
+ *         &lt;element name="tag" type="{http://mestredasdicas-gilserver.openshift.com}tag" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,30 +28,30 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AdicionarTag", propOrder = {
-    "arg0"
+    "tag"
 })
 public class AdicionarTag {
 
-    protected Tag arg0;
+    protected Tag tag;
 
     /**
-     * Obtém o valor da propriedade arg0.
+     * Obtém o valor da propriedade tag.
      *
      * @return possible object is {@link Tag }
      *
      */
-    public Tag getArg0() {
-        return arg0;
+    public Tag getTag() {
+        return tag;
     }
 
     /**
-     * Define o valor da propriedade arg0.
+     * Define o valor da propriedade tag.
      *
      * @param value allowed object is {@link Tag }
      *
      */
-    public void setArg0(Tag value) {
-        this.arg0 = value;
+    public void setTag(Tag value) {
+        this.tag = value;
     }
 
 }

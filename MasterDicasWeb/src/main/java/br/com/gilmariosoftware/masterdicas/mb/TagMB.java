@@ -24,6 +24,8 @@ public class TagMB implements Serializable {
     private String nome = "";
     @EJB
     private GeradorMensagem mensagem;
+    private int tamanhoLista;
+    private int pagina;
 
     public void salvar() {
         try {

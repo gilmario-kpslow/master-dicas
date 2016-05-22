@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+        <cc:attribute name="icone" default="fa-question"/>
+        <cc:attribute name="value" default=""/>
+        <cc:attribute name="event" default="click"/>
+        <cc:attribute name="execute" default="@form"/>
+        <cc:attribute name="render" default="@form"/>
+        <cc:attribute name="immediate" default="false"/>
+        <cc:attribute name="listener" default="null"/>
+    </cc:interface>
+    <cc:implementation>
+        <h:commandLink styleClass="btn btn-primary" value="#{cc.attrs.value}">
+            <i class="fa #{cc.attrs.icone}"></i>
+            <f:ajax event="#{cc.attrs.event}" execute="#{cc.attrs.execute}" immediate="#{cc.attrs.immediate}" listener="#{cc.attrs.listener}" />
+        </h:commandLink>
+    </cc:implementation>
+
+
+</ui:composition>
+

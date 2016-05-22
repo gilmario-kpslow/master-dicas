@@ -7,8 +7,25 @@
 
     <ui:define name="conteudo">
         <div class="row">
+            <h:messages errorClass="alert-danger" class="alert" fatalClass="alert-danger" infoClass="alert-info" warnClass="alert-warning"/>
             <ui:repeat value="#{indexMB.dicas}" var="dica">
                 <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span>Autor: </span>
+                            <h:outputText value="#{dica.autor}"/>
+                        </div>
+                        <div class="col-md-4">
+                            <h:outputText value="#{dica.dataCadastro}"/>
+                        </div>
+                    </div>
+
+                    <div >
+                        <p><h:outputText value="#{dica.titulo}" class="text-capitalize text-bold"/></p>
+                    </div>
+                    <div>
+                        <h:outputText value="#{dica.simpleDescricao}" escape="true" />
+                    </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <span class="panel-title">

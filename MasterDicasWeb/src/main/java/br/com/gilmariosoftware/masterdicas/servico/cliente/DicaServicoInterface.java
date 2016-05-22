@@ -31,7 +31,7 @@ public interface DicaServicoInterface {
     @RequestWrapper(localName = "AlterarDica", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.AlterarDica")
     @ResponseWrapper(localName = "AlterarDicaResponse", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.AlterarDicaResponse")
     public Dica alterarDica(
-            @WebParam(name = "arg0", targetNamespace = "") Dica arg0)
+            @WebParam(name = "dica", targetNamespace = "") Dica dica)
             throws FaultException;
 
     /**
@@ -118,12 +118,12 @@ public interface DicaServicoInterface {
     @RequestWrapper(localName = "AdicionarDica", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.AdicionarDica")
     @ResponseWrapper(localName = "AdicionarDicaResponse", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.AdicionarDicaResponse")
     public Dica adicionarDica(
-            @WebParam(name = "arg0", targetNamespace = "") Dica arg0)
+            @WebParam(name = "dica", targetNamespace = "") Dica dica)
             throws FaultException;
 
     /**
      *
-     * @param arg0
+     * @param tag
      * @return returns br.com.gilmariosoftware.masterdicas.servico.cliente.Tag
      * @throws FaultException
      */
@@ -132,7 +132,7 @@ public interface DicaServicoInterface {
     @RequestWrapper(localName = "AdicionarTag", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.AdicionarTag")
     @ResponseWrapper(localName = "AdicionarTagResponse", targetNamespace = "http://mestredasdicas-gilserver.openshift.com", className = "br.com.gilmariosoftware.masterdicas.servico.cliente.AdicionarTagResponse")
     public Tag adicionarTag(
-            @WebParam(name = "arg0", targetNamespace = "") Tag arg0)
+            @WebParam(name = "tag", targetNamespace = "") Tag tag)
             throws FaultException;
 
 }

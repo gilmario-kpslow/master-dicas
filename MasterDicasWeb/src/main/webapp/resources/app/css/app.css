@@ -67,3 +67,15 @@
 .tag-nome{
     text-transform: uppercase;
 }
+
+.mensagem{
+
+}
+.mensagem ul{
+    list-style-type: none;
+    padding: 0;
+}
+.mensagem li{
+    width: 100%;
+    margin: 0;
+}

@@ -19,4 +19,8 @@ public class TagDAO extends DAO<Tag, String> implements Serializable {
     public List<Tag> buscarPor(String nome) {
         return getSession().createCriteria(Tag.class).add(Restrictions.ilike(Tag_.nome.getName(), nome, MatchMode.START)).addOrder(Order.asc(Tag_.nome.getName())).list();
     }
+
+    public List<Tag> paginar(String nome, int inicio, int quantidade) {
+        return getSession().createCriteria(Tag.class).add(Restrictions.ilike(Tag_.nome.getName(), nome, MatchMode.START)).addOrder(Order.asc(Tag_.nome.getName())).setMaxResults(quantidade).setFirstResult(inicio).list();
+    }
 }
