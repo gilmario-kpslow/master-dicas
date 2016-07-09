@@ -40,4 +40,8 @@ public class TagNegocio implements Serializable {
         return dao.paginar(nome, inicio, quantidade);
     }
 
+    public Long contar(String nome) {
+        return dao.contar(nome);
+    }
+
 }

@@ -30,9 +30,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listaDeTags", propOrder = {
-    "tags"
-})
 public class ListaDeTags {
 
     @XmlElement(nillable = true)

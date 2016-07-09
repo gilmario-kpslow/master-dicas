@@ -27,9 +27,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BuscarTagsResponse", propOrder = {
-    "tags"
-})
 public class BuscarTagsResponse {
 
     protected ListaDeTags tags;

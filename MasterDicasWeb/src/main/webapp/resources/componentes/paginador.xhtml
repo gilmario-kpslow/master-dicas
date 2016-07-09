@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+        <cc:attribute name="paginador" type="br.com.gilmariosoftware.masterdicas.util.PaginadorInterface"/>
+        <cc:attribute name="tabela" required="true"/>
+    </cc:interface>
+    <cc:implementation>
+        <nav>
+            <ul class="pagination">
+                <li>
+                    <!--<span aria-hidden="true"><i class="fa fa-toggle-left"></i></span>-->
+                    <h:commandLink value="#{p}" styleClass="fa fa-toggle-left">
+                        <f:ajax event="click" listener="#{cc.attrs.paginador.voltar()}" execute="@this" render="#{cc.attrs.tabela}"/>
+                    </h:commandLink>
+
+                </li>
+                <ui:repeat value="#{cc.attrs.paginador.paginas}" var="p">
+                    <li>
+                        <h:commandLink value="#{p}">
+                            <f:ajax event="click" listener="#{cc.attrs.paginador.irPara(p)}" execute="@this" render="#{cc.attrs.tabela}"/>
+                        </h:commandLink>
+                    </li>
+                </ui:repeat>
+                <li>
+                    <h:commandLink value="#{p}" styleClass="fa fa-toggle-right">
+                        <f:ajax event="click" listener="#{cc.attrs.paginador.proximo()}" execute="@this" render="#{cc.attrs.tabela}"/>
+                    </h:commandLink>
+                </li>
+            </ul>
+        </nav>
+    </cc:implementation>
+
+
+</ui:composition>
+

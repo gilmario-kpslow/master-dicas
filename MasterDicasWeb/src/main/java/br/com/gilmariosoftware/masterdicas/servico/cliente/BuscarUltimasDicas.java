@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BuscarUltimasDicas")
 public class BuscarUltimasDicas {
 
 }

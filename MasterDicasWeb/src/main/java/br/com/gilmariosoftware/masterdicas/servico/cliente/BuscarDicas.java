@@ -30,10 +30,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BuscarDicas", propOrder = {
-    "tags",
-    "titulo"
-})
 public class BuscarDicas {
 
     protected List<Tag> tags;

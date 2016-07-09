@@ -7,10 +7,9 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="conteudo">
-        <h:form prependId="false">
+        <h:form id="dica_frm">
             <t:outputMensagens />
-
-            <t:panel titulo="Registrar Dica">
+            <t:panel titulo="Registrar Dica" id="panel">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <h:outputLabel value="Titulo" for="titulo" styleClass="label label-primary"/>
@@ -50,7 +49,6 @@
                         <h:outputLabel value="Tags" styleClass="label label-primary"/>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-
                                 <h:panelGrid id="tags">
                                     <ui:repeat value="#{dicaMB.dica.tags}" var="tag">
                                         <h:outputText value="#{tag.nome}" styleClass="badge tag-nome"/>
@@ -73,43 +71,16 @@
                     </div>
                 </f:facet>
             </t:panel>
-            <t:dialog id_dialog="tagdialog" titulo="Incluir tag">
-                <div class="row">
-                    <div  class="col-lg-12 col-md-12">
-                        <h:commandLink styleClass="btn btn-primary fa fa-save" title="Buscar" value=" Buscar ">
-                            <f:ajax event="click" render="tabela" execute="@this" listener="#{tagMB.buscarTags()}"/>
-                        </h:commandLink>
-                    </div>
-                </div>
-                <div class="row">
-                    <div  class="col-lg-12 col-md-12">
-                        <h:dataTable value="#{tagMB.listaDeTags}" id="tabela" var="elemento" styleClass="table table-hover table-responsive table-striped">
-                            <div class="row">
-                                <div class="col-md-11 col-lg-11">
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Nome"/>
-                                        </f:facet>
-                                        <h:outputText value="#{elemento.nome}" styleClass="tag-nome"/>
-                                    </h:column>
-                                </div>
-                                <div class="col-md-11 col-lg-11">
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Ação"/>
-                                        </f:facet>
-                                        <h:commandLink onclick="$('#tagdialog').modal('hide');">
-                                            <span class="fa fa-plus"></span>
-                                            <f:ajax event="click" execute="@this" render="@all" listener="#{dicaMB.adicionaTag(elemento)}" />
-                                        </h:commandLink>
-                                    </h:column>
-                                </div>
-                            </div>
-                        </h:dataTable>
-                    </div>
-                </div>
-            </t:dialog>
+
         </h:form>
+        <t:dialog id_dialog="tagdialog" titulo="Incluir tag">
+            <t:tags>
+                <h:commandLink onclick="$('#tagdialog').modal('hide');">
+                    <span class="fa fa-plus"></span>
+                    <f:ajax event="click" execute="@this" render=":dica_frm:panel:tags" listener="#{dicaMB.adicionaTag(elemento)}" />
+                </h:commandLink>
+            </t:tags>
+        </t:dialog>
     </ui:define>
 </ui:composition>
 

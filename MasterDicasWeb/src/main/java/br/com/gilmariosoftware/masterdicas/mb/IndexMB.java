@@ -24,6 +24,7 @@ public class IndexMB implements Serializable {
     @EJB
     private GeradorMensagem mensagem;
     private List<Dica> dicas;
+    private Dica dica;
 
     public IndexMB() {
         dicas = new ArrayList<>();
@@ -44,6 +45,14 @@ public class IndexMB implements Serializable {
 
     public List<Dica> getDicas() {
         return dicas;
+    }
+
+    public Dica getDica() {
+        return dica;
+    }
+
+    public void setDica(Dica dica) {
+        this.dica = dica;
     }
 
 }

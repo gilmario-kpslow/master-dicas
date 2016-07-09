@@ -79,7 +79,7 @@ public class DicaServico implements DicaServicoInterface {
     }
 
     @Override
-    public ListaDeTag paginar(String nome, int inicio, int quantidade) throws FaultException {
+    public ListaDeTag paginarTags(String nome, int inicio, int quantidade) throws FaultException {
         try {
             return new ListaDeTag(tagNegocio.paginar(nome, inicio, quantidade));
         } catch (Exception e) {
@@ -104,5 +104,10 @@ public class DicaServico implements DicaServicoInterface {
         } catch (Exception e) {
             throw new FaultException(e.getMessage());
         }
+    }
+
+    @Override
+    public Long totalTags(String nome) throws FaultException {
+        return tagNegocio.contar(nome);
     }
 }

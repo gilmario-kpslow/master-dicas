@@ -27,31 +27,16 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BuscarTags", propOrder = {
-    "arg0"
-})
 public class BuscarTags {
 
-    protected String arg0;
+    protected String nome;
 
-    /**
-     * Obtém o valor da propriedade arg0.
-     *
-     * @return possible object is {@link String }
-     *
-     */
-    public String getArg0() {
-        return arg0;
+    public String getNome() {
+        return nome;
     }
 
-    /**
-     * Define o valor da propriedade arg0.
-     *
-     * @param value allowed object is {@link String }
-     *
-     */
-    public void setArg0(String value) {
-        this.arg0 = value;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

@@ -28,9 +28,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RemoverTag", propOrder = {
-    "tag"
-})
 public class RemoverTag {
 
     @XmlElement(name = "RemoverTag")
@@ -53,7 +50,7 @@ public class RemoverTag {
      *
      */
     public void setRemoverTag(Tag value) {
-        this.removerTag = value;
+        this.tag = value;
     }
 
 }

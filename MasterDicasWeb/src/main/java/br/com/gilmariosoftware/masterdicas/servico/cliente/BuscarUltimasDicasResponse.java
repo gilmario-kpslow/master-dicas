@@ -27,9 +27,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BuscarUltimasDicasResponse", propOrder = {
-    "dicas"
-})
 public class BuscarUltimasDicasResponse {
 
     protected ListaDeDicas dicas;

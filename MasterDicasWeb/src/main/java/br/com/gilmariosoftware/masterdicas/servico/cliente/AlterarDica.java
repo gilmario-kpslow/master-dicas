@@ -27,31 +27,16 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AlterarDica", propOrder = {
-    "arg0"
-})
 public class AlterarDica {
 
-    protected Dica arg0;
+    protected Dica dica;
 
-    /**
-     * Obtém o valor da propriedade arg0.
-     *
-     * @return possible object is {@link Dica }
-     *
-     */
-    public Dica getArg0() {
-        return arg0;
+    public Dica getDica() {
+        return dica;
     }
 
-    /**
-     * Define o valor da propriedade arg0.
-     *
-     * @param value allowed object is {@link Dica }
-     *
-     */
-    public void setArg0(Dica value) {
-        this.arg0 = value;
+    public void setDica(Dica dica) {
+        this.dica = dica;
     }
 
 }

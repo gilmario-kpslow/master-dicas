@@ -27,9 +27,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AdicionarTag", propOrder = {
-    "tag"
-})
 public class AdicionarTag {
 
     protected Tag tag;
