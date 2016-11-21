@@ -28,9 +28,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tag", propOrder = {
-    "nome"
-})
 public class Tag {
 
     @XmlElement(required = true)

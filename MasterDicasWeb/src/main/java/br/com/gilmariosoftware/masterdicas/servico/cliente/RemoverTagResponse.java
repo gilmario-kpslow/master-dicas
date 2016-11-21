@@ -27,9 +27,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RemoverTagResponse", propOrder = {
-    "informacao"
-})
 public class RemoverTagResponse {
 
     protected String informacao;

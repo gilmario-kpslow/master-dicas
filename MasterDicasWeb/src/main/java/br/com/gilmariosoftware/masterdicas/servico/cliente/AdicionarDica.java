@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://mestredasdicas-gilserver.openshift.com}dica" minOccurs="0"/>
+ *         &lt;element name="dica" type="{http://mestredasdicas-gilserver.openshift.com}dica" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,31 +27,28 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AdicionarDica", propOrder = {
-    "arg0"
-})
 public class AdicionarDica {
 
-    protected Dica arg0;
+    protected Dica dica;
 
     /**
-     * Obtém o valor da propriedade arg0.
+     * Obtém o valor da propriedade dica.
      *
      * @return possible object is {@link Dica }
      *
      */
-    public Dica getArg0() {
-        return arg0;
+    public Dica getDica() {
+        return dica;
     }
 
     /**
-     * Define o valor da propriedade arg0.
+     * Define o valor da propriedade dica.
      *
      * @param value allowed object is {@link Dica }
      *
      */
-    public void setArg0(Dica value) {
-        this.arg0 = value;
+    public void setDica(Dica value) {
+        this.dica = value;
     }
 
 }

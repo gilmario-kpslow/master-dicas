@@ -41,17 +41,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dica", propOrder = {
-    "id",
-    "titulo",
-    "dataCadastro",
-    "autor",
-    "referencias",
-    "descricao",
-    "statusDica",
-    "obervacao",
-    "tags"
-})
 public class Dica {
 
     protected Long id;

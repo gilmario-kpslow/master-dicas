@@ -28,22 +28,19 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RemoverTag", propOrder = {
-    "removerTag"
-})
 public class RemoverTag {
 
     @XmlElement(name = "RemoverTag")
-    protected Tag removerTag;
+    protected Tag tag;
 
     /**
-     * Obtém o valor da propriedade removerTag.
+     * Obtém o valor da propriedade tag.
      *
      * @return possible object is {@link Tag }
      *
      */
-    public Tag getRemoverTag() {
-        return removerTag;
+    public Tag getTag() {
+        return tag;
     }
 
     /**
@@ -53,7 +50,7 @@ public class RemoverTag {
      *
      */
     public void setRemoverTag(Tag value) {
-        this.removerTag = value;
+        this.tag = value;
     }
 
 }

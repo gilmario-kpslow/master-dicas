@@ -23,6 +23,7 @@ public class DicaDAO extends DAO<Dica, Long> implements Serializable {
                 .add(Restrictions.ilike(Dica_.titulo.getName(), titulo, MatchMode.START))
                 .addOrder(Order.asc(Dica_.titulo.getName()))
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .setMaxResults(100)
                 .list();
     }
 
@@ -30,7 +31,7 @@ public class DicaDAO extends DAO<Dica, Long> implements Serializable {
         return getSession().createCriteria(Dica.class)
                 .addOrder(Order.desc(Dica_.dataCadastro.getName()))
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
-                .setMaxResults(25)
+                .setMaxResults(100)
                 .list();
     }
 }

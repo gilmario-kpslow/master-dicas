@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -17,6 +18,24 @@ import org.hibernate.criterion.Restrictions;
 public class TagDAO extends DAO<Tag, String> implements Serializable {
 
     public List<Tag> buscarPor(String nome) {
-        return getSession().createCriteria(Tag.class).add(Restrictions.ilike(Tag_.nome.getName(), nome, MatchMode.START)).addOrder(Order.asc(Tag_.nome.getName())).list();
+        return getSession().createCriteria(Tag.class)
+                .add(Restrictions.ilike(Tag_.nome.getName(), nome, MatchMode.START))
+                .addOrder(Order.asc(Tag_.nome.getName()))
+                .setMaxResults(25)
+                .list();
+    }
+
+    public List<Tag> paginar(String nome, int inicio, int quantidade) {
+        return getSession().createCriteria(Tag.class)
+                .add(Restrictions.ilike(Tag_.nome.getName(), nome, MatchMode.START))
+                .addOrder(Order.asc(Tag_.nome.getName()))
+                .setMaxResults(quantidade).setFirstResult(inicio).list();
+    }
+
+    public Long contar(String nome) {
+        return (Long) getSession().createCriteria(Tag.class)
+                .add(Restrictions.ilike(Tag_.nome.getName(), nome, MatchMode.START))
+                .setProjection(Projections.count(Tag_.nome.getName()))
+                .uniqueResult();
     }
 }

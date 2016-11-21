@@ -28,9 +28,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RemoverDica", propOrder = {
-    "removerDica"
-})
 public class RemoverDica {
 
     @XmlElement(name = "RemoverDica")

@@ -25,12 +25,14 @@ public class TagMB implements Serializable {
     @EJB
     private GeradorMensagem mensagem;
 
+    public TagMB() {
+    }
+
     public void salvar() {
         try {
             tag = servico.getServico().adicionarTag(tag);
             mensagem.info("Tag Cadastrada");
             tag = new Tag();
-            buscarTags();
         } catch (Exception e) {
             mensagem.erro(e.getMessage());
         }

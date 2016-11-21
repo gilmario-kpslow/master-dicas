@@ -30,7 +30,6 @@ public class DicaMB implements Serializable {
     public void salvar() {
         try {
             if (dica.getId() != null) {
-
                 dica = servico.getServico().alterarDica(dica);
                 mensagem.info("Dica alterada com sucesso!");
             } else {
@@ -52,7 +51,9 @@ public class DicaMB implements Serializable {
     }
 
     public void adicionaTag(Tag tag) {
-        dica.getTags().add(tag);
+        if (!dica.getTags().contains(tag)) {
+            dica.getTags().add(tag);
+        }
     }
 
     public void buscarDicas() {
