@@ -1,7 +1,7 @@
 package br.com.gilmariosoftware.masterdicas.mb;
 
-import br.com.gilmariosoftware.masterdicas.servico.cliente.Dica;
-import br.com.gilmariosoftware.masterdicas.servico.cliente.DicaWSCliente;
+import br.com.gilmariosoftware.masterdicas.dominio.Dica;
+import br.com.gilmariosoftware.masterdicas.negocio.DicaNegocio;
 import br.com.gilmariosoftware.masterdicas.util.GeradorMensagem;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import javax.inject.Named;
 public class IndexMB implements Serializable {
 
     @EJB
-    private DicaWSCliente cliente;
+    private DicaNegocio negocio;
     @EJB
     private GeradorMensagem mensagem;
     private List<Dica> dicas;
@@ -37,7 +37,7 @@ public class IndexMB implements Serializable {
 
     public void ultimasDicas() {
         try {
-            dicas = cliente.getServico().buscarUltimasDicas().getDicas();
+            dicas = negocio.ultimasDicas();
         } catch (Exception e) {
             mensagem.erro(e.getMessage());
         }

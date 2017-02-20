@@ -2,18 +2,7 @@
     Created on : 01/12/2015, 09:36:08
     Author     : gilmario
 */
-.bg-darkness{
-
-    background-color:#333;
-}
-.bg-ligtness{
-    background-color:#f5f5f5;
-}
-.text-ligtness{
-    color: #f5f5f5;
-}
-
-.minimo{
+.altura-minima{
     min-height: 400px;
 }
 

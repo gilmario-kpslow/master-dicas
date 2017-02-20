@@ -1,7 +1,7 @@
 package br.com.gilmariosoftware.masterdicas.mb;
 
-import br.com.gilmariosoftware.masterdicas.servico.cliente.DicaWSCliente;
-import br.com.gilmariosoftware.masterdicas.servico.cliente.Tag;
+import br.com.gilmariosoftware.masterdicas.dominio.Tag;
+import br.com.gilmariosoftware.masterdicas.negocio.TagNegocio;
 import br.com.gilmariosoftware.masterdicas.util.GeradorMensagem;
 import java.io.Serializable;
 import java.util.List;
@@ -18,7 +18,7 @@ import javax.inject.Named;
 public class TagMB implements Serializable {
 
     @EJB
-    private DicaWSCliente servico;
+    private TagNegocio negocio;
     private Tag tag = new Tag();
     private List<Tag> listaDeTags;
     private String nome = "";
@@ -30,7 +30,7 @@ public class TagMB implements Serializable {
 
     public void salvar() {
         try {
-            tag = servico.getServico().adicionarTag(tag);
+            tag = negocio.adicionarTag(tag);
             mensagem.info("Tag Cadastrada");
             tag = new Tag();
         } catch (Exception e) {
@@ -40,7 +40,8 @@ public class TagMB implements Serializable {
 
     public void remover(Tag tag) {
         try {
-            mensagem.info(servico.getServico().removerTag(tag));
+            negocio.removerTag(tag);
+            mensagem.info("Tag Removida com sucesso!");
             buscarTags();
         } catch (Exception e) {
             mensagem.erro(e.getMessage());
@@ -49,7 +50,7 @@ public class TagMB implements Serializable {
 
     public void buscarTags() {
         try {
-            listaDeTags = servico.getServico().buscarTags(nome).getTags();
+            listaDeTags = negocio.buscarPor(nome);
         } catch (Exception e) {
             mensagem.erro(e.getMessage());
         }

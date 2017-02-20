@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+        <cc:attribute name="titulo" default=""/>
+        <cc:attribute name="icon" default=""/>
+    </cc:interface>
+    <cc:implementation>
+        <div class="card z-depth-3 painel">
+
+            <div class="card-content">
+                <div class="card-title center-align teal white-text z-depth-1">
+                    <i class="#{cc.attrs.icon}"></i>
+                    <span>#{cc.attrs.titulo}</span>
+                    <cc:renderFacet name="titulo"/>
+                </div>
+                <cc:insertChildren/>
+            </div>
+            <div class="card-action grey lighten-4">
+                <cc:renderFacet name="footer"/>
+            </div>
+        </div>
+    </cc:implementation>
+</ui:composition>

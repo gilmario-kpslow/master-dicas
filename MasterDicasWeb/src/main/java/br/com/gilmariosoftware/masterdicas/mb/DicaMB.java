@@ -1,8 +1,8 @@
 package br.com.gilmariosoftware.masterdicas.mb;
 
-import br.com.gilmariosoftware.masterdicas.servico.cliente.Dica;
-import br.com.gilmariosoftware.masterdicas.servico.cliente.DicaWSCliente;
-import br.com.gilmariosoftware.masterdicas.servico.cliente.Tag;
+import br.com.gilmariosoftware.masterdicas.dominio.Dica;
+import br.com.gilmariosoftware.masterdicas.dominio.Tag;
+import br.com.gilmariosoftware.masterdicas.negocio.DicaNegocio;
 import br.com.gilmariosoftware.masterdicas.util.GeradorMensagem;
 import java.io.Serializable;
 import java.util.List;
@@ -19,7 +19,7 @@ import javax.inject.Named;
 public class DicaMB implements Serializable {
 
     @EJB
-    private DicaWSCliente servico;
+    private DicaNegocio negocio;
     private Dica dica = new Dica();
     private List<Tag> listaDeTags;
     private List<Dica> listaDeDicas;
@@ -30,10 +30,10 @@ public class DicaMB implements Serializable {
     public void salvar() {
         try {
             if (dica.getId() != null) {
-                dica = servico.getServico().alterarDica(dica);
+                dica = negocio.alterarDica(dica);
                 mensagem.info("Dica alterada com sucesso!");
             } else {
-                dica = servico.getServico().adicionarDica(dica);
+                dica = negocio.adicionarDica(dica);
                 mensagem.info("Dica Cadastrada com sucesso!");
             }
             dica = new Dica();
@@ -44,7 +44,8 @@ public class DicaMB implements Serializable {
 
     public void remover(Dica dica) {
         try {
-            mensagem.info(servico.getServico().removerDica(dica));
+            negocio.removerDica(dica);
+            mensagem.info("Dica removida com sucesso!");
         } catch (Exception e) {
             mensagem.erro(e.getMessage());
         }
@@ -58,7 +59,7 @@ public class DicaMB implements Serializable {
 
     public void buscarDicas() {
         try {
-            listaDeDicas = servico.getServico().buscarDicas(listaDeTags, titulo).getDicas();
+            listaDeDicas = negocio.buscarPor(listaDeTags, titulo);
         } catch (Exception e) {
             mensagem.erro(e.getMessage());
         }

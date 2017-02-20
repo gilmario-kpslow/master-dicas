@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:t="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+    </cc:interface>
+    <cc:implementation>
+        <h:form>
+            <t:outputMensagens />
+            <t:panel titulo="Adicionar Tag">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <h:outputLabel value="Nome" for="nome" styleClass="label label-primary"/>
+                        <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
+                        <div>
+                            <h:inputText value="#{tagMB.tag.nome}" id="nome" requiredMessage="Informe um nome" required="true" styleClass="form-control tag-nome"/>
+                        </div>
+                    </div>
+                </div>
+                <f:facet name="footer">
+                    <div class="row">
+                        <div  class="col-lg-12 col-md-12">
+                            <h:commandLink styleClass="btn btn-primary fa fa-save fa-inverse" title="Salvar" value=" Salvar ">
+                                <f:ajax event="click" render="@form" execute="@form" listener="#{tagMB.salvar()}"/>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </f:facet>
+            </t:panel>
+        </h:form>
+        <h:form>
+            <t:panel titulo="Tags Cadastradas">
+                <div class="row">
+                    <div  class="col-lg-8 col-md-8">
+                        <h:inputText styleClass="form-control tag-nome" value="#{tagMB.nome}" id="nome">
+                            <f:passThroughAttribute name="placeholder"  value="Nome ou parte da Tag"/>
+                        </h:inputText>
+                    </div>
+                    <div  class="col-lg-4 col-md-4">
+                        <h:commandLink styleClass="btn btn-primary fa fa-save" title="Buscar" value=" Buscar ">
+                            <f:ajax event="click" render="tabela" execute="@form" listener="#{tagMB.buscarTags()}"/>
+                        </h:commandLink>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <h:dataTable value="#{tagMB.listaDeTags}" id="tabela" var="elemento" styleClass="table table-hover table-responsive table-striped">
+                            <div class="row">
+                                <div class="col-md-11 col-lg-11">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Nome"/>
+                                        </f:facet>
+                                        <h:outputText value="#{elemento.nome}" styleClass="tag-nome"/>
+                                    </h:column>
+                                </div>
+                                <div class="col-md-11 col-lg-11">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Ação"/>
+                                        </f:facet>
+                                        <cc:insertChildren/>
+                                    </h:column>
+                                </div>
+                            </div>
+                        </h:dataTable>
+                    </div>
+                </div>
+            </t:panel>
+        </h:form>
+    </cc:implementation>
+</ui:composition>
+

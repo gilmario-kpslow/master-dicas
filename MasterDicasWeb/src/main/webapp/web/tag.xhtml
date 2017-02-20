@@ -2,69 +2,77 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template/template.xhtml"
-                xmlns:t="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:t="http://xmlns.jcp.org/jsf/composite/padrao"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="conteudo">
         <h:form>
-            <t:outputMensagens />
-            <t:panel titulo="Adicionar Tag">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <h:outputLabel value="Nome" for="nome" styleClass="label label-primary"/>
-                        <h:message for="nome" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                        <div>
-                            <h:inputText value="#{tagMB.tag.nome}" id="nome" requiredMessage="Informe um nome" required="true" styleClass="form-control tag-nome"/>
+            <t:card titulo="Adicionar Tag" icon="fa fa-tag">
+                <div class="container-fluid">
+                    <t:outputMensagens />
+                    <div class="row">
+                        <div class="col l12 m12 input-field">
+                            <h:inputText value="#{tagMB.tag.nome}" id="nome" requiredMessage="Informe um nome" required="true"/>
+                            <h:message for="nome" styleClass="fa fa-ban red-text" showDetail="false" showSummary="true" />
+                            <label for="nome" class="active">Nome</label>
                         </div>
                     </div>
+                    <h:commandLink styleClass="btn btn-large btn-floating right waves-effect waves-light tooltipped">
+                        <i class="fa fa-save fa-2x"></i>
+                        <f:ajax event="click" render="@form" execute="@form" listener="#{tagMB.salvar()}"/>
+                        <f:passThroughAttribute name="data-position" value="top"/>
+                        <f:passThroughAttribute name="data-delay" value="500"/>
+                        <f:passThroughAttribute name="data-tooltip" value="Salvar"/>
+                    </h:commandLink>
+                    <f:facet name="footer">
+                        <div class="row">
+                            <div  class="col l12 m12">
+                                <h:commandLink styleClass="btn waves-effect waves-light" title="Salvar" value="Salvar">
+                                    <i class="fa fa-save left"></i>
+                                    <f:ajax event="click" render="@form" execute="@form" listener="#{tagMB.salvar()}"/>
+                                </h:commandLink>
+                            </div>
+                        </div>
+                    </f:facet>
                 </div>
-                <f:facet name="footer">
+            </t:card>
+        </h:form>
+        <h:form>
+            <t:card titulo="Tags Cadastradas">
+                <div class="container-fluid">
                     <div class="row">
-                        <div  class="col-lg-12 col-md-12">
-                            <h:commandLink styleClass="btn btn-primary fa fa-save fa-inverse" title="Salvar" value=" Salvar ">
-                                <f:ajax event="click" render="@form" execute="@form" listener="#{tagMB.salvar()}"/>
+                        <div class="col l12 md12 s12">
+                            <h:commandLink styleClass="btn waves-effect waves-light" title="Consultar" value="Consultar">
+                                <i class="fa fa-search left"></i>
+                                <f:ajax event="click" render="tabela" execute="@this" listener="#{tagMB.buscarTags()}"/>
                             </h:commandLink>
                         </div>
                     </div>
-                </f:facet>
-            </t:panel>
-            <t:panel titulo="Tags Cadastradas">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <h:commandLink styleClass="btn btn-primary fa fa-search" title="Consultar" value=" Consultar">
-                            <f:ajax event="click" render="@form" execute="@this" listener="#{tagMB.buscarTags()}"/>
-                        </h:commandLink>
+                    <div class="row">
+                        <div class="col l12 m12">
+                            <h:dataTable value="#{tagMB.listaDeTags}" id="tabela" var="elemento" styleClass="striped hoverable bordered">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nome"/>
+                                    </f:facet>
+                                    <h:outputText value="#{elemento.nome}" styleClass="tag-nome"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Ação"/>
+                                    </f:facet>
+                                    <h:commandLink>
+                                        <span class="fa fa-times"></span>
+                                        <f:ajax event="click" execute="@this" render="@form" listener="#{tagMB.remover(elemento)}"/>
+                                    </h:commandLink>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <h:dataTable value="#{tagMB.listaDeTags}" id="tabela" var="elemento" styleClass="table table-hover table-responsive table-striped">
-                            <div class="row">
-                                <div class="col-md-11 col-lg-11">
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Nome"/>
-                                        </f:facet>
-                                        <h:outputText value="#{elemento.nome}" styleClass="tag-nome"/>
-                                    </h:column>
-                                </div>
-                                <div class="col-md-11 col-lg-11">
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Ação"/>
-                                        </f:facet>
-                                        <h:commandLink>
-                                            <span class="fa fa-times"></span>
-                                            <f:ajax event="click" execute="@this" render="@form" listener="#{tagMB.remover(elemento)}"/>
-                                        </h:commandLink>
-                                    </h:column>
-                                </div>
-                            </div>
-                        </h:dataTable>
-                    </div>
-                </div>
-            </t:panel>
+            </t:card>
         </h:form>
     </ui:define>
 </ui:composition>

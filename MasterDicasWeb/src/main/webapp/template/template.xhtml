@@ -1,71 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsf/composite/componentes"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
         <title>#{conf['app.titulo']}</title>
-        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="#{application.contextPath}/resources/bootstrap/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="#{application.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css"/>
+        <!--<link rel="stylesheet" href="{application.contextPath}/resources/bootstrap/css/bootstrap.min.css"/>-->
+        <!--<link rel="stylesheet" href="{application.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css"/>-->
+        <link rel="stylesheet" href="#{application.contextPath}/resources/app/css/normalize.css"/>
+        <link rel="stylesheet" href="#{application.contextPath}/resources/materialize/css/materialize.css"/>
         <link rel="stylesheet" href="#{application.contextPath}/resources/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="#{application.contextPath}/resources/app/css/app.css"/>
     </h:head>
 
     <h:body>
-        <ui:insert name="cabecalho">
-            <div class="container-fluid">
-                <div class="row">
+        <header>
 
-                </div>
-            </div>
-        </ui:insert>
-
-        <div class="menu">
-            <ui:insert name="menu">
-                <nav class="navbar navbar-default">
+            <ui:insert name="cabecalho">
+                <header class="green lighten-1">
                     <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="true">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#{application.contextPath}"><span class="fa fa-home"></span> Início</a>
-                        </div>
-
-                        <div class="collapse navbar-collapse" id="menu">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#{application.contextPath}/web/tag.xhtml"><span class="fa fa-krw"></span> Tags</a></li>
-                                <li><a href="#{application.contextPath}/web/dica.xhtml"><span class="fa fa-database"></span> Dicas</a></li>
-                            </ul>
+                        <div class="row">
+                            <div class="col l2 center s12 ">
+                                <!--<h:graphicImage alt="Imagem" styleClass="responsive-img" library="imagens" name="icone.png" width="100"/>-->
+                            </div>
+                            <div class="col l10 s12 center hide-on-large-only">
+                                <h4 class="white-text">Dicas e Idéias</h4>
+                                <h5 class="white-text">Dicas e Idéias</h5>
+                            </div>
                         </div>
                     </div>
-                </nav>
+                </header>
             </ui:insert>
-        </div>
-        <div class="container minimo">
-            <ui:insert name="conteudo">Conteudo</ui:insert>
-        </div>
+
+            <div class="menu">
+                <ui:insert name="menu">
+                    <div class="container-fluid">
+                        <nav class="teal darken-4">
+                            <div class="nav-wrapper container ">
+                                <ul class="left hide-on-med-and-down" id="main-menu">
+                                    <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Ir para o início">
+                                        <a href="#{application.contextPath}" class=""><span class="fa fa-home fa-2x fa-flip-horizontal"></span>
+                                        </a></li>
+                                    <li><a class="dropdown-button" href="#!" data-activates="menu-criar">Criar<i class="fa fa-caret-down"></i></a></li>
+                                </ul>
+                                <ul class="right hide-on-med-and-down">
+                                    <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Sair do sistema">
+                                        <a href="#{application.contextPath}/logout" class=""><span class="fa fa-sign-out fa-2x fa-flip-horizontal"></span></a></li>
+                                </ul>
+                                <ul class="side-nav" id="mobile-menu">
+                                    <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Ir para o início">
+                                        <a href="#{application.contextPath}" class=""><span class="fa fa-home fa-2x fa-flip-horizontal"></span>
+                                        </a></li>
+                                    <li><a class="dropdown-button" href="#!" data-activates="menu-criar-mobile">Criar<i class="fa fa-caret-down"></i></a></li>
+                                    <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Sair do sistema">
+                                        <a href="#{application.contextPath}/logout" class=""><span class="fa fa-sign-out fa-2x fa-flip-horizontal"></span></a></li>
+                                </ul>
+                                <a href="#" data-activates="mobile-menu" class="right button-collapse"><i class="fa fa-align-justify fa-2x"></i></a>
+                            </div>
+                        </nav>
+                        <!-- Dropdown Structure -->
+                        <ul id="menu-criar" class="dropdown-content">
+                            <li><h:link outcome="/web/tag"  value="Tag"/></li>
+                            <li class="divider"></li>
+                            <li><h:link outcome="/web/dica" value="Dica"></h:link></li>
+                            <li class="divider"></li>
+                            <!--<li><h:link outcome="/web/dica" value="Dica"></h:link></li>-->
+                        </ul>
+                        <ul id="menu-criar-mobile" class="dropdown-content">
+                            <li><h:link outcome="/web/tag"  value="Tag"/></li>
+                            <li class="divider"></li>
+                            <li><h:link outcome="/web/dica" value="Dica"></h:link></li>
+                        </ul>
+                    </div>
+                </ui:insert>
+            </div>
+        </header>
+        <main>
+            <div class="container altura-minima">
+                <ui:insert name="conteudo">Conteudo</ui:insert>
+            </div>
+        </main>
         <ui:insert name="rodape">
-            <footer>
-                <div class="container-fluid bg-ligtness">
-                    <div class="row">
-                        <div class="col-md-12 text-right">
-                            <span>Desenvolvido por: GilmarioSoftware</span>
+            <footer class="page-footer green">
+                <ui:insert name="footer">
+                    <div class="footer-copyright">
+                        <div class="container">
+                            © 2014 Copyright Text
+                            <a class="grey-text text-lighten-4 right" href="#!">Mais Links</a>
                         </div>
                     </div>
-                </div>
+                </ui:insert>
             </footer>
         </ui:insert>
-        <h:outputScript library="jquery" name="js/jquery-2.1.4.min.js"/>
-        <h:outputScript library="jquery" name="js/jquery.maskedinput.min.js"/>
-        <h:outputScript library="jquery" name="js/jquery.maskMoney.min.js"/>
-        <h:outputScript library="bootstrap" name="js/bootstrap.min.js"/>
+        <h:outputScript name="jsf.js" library="javax.faces"/>
+        <h:outputScript library="jquery" name="js/jquery-3.1.1.min.js"/>
+        <h:outputScript library="materialize" name="js/bin/materialize.min.js"/>
         <h:outputScript library="app" name="js/app.js"/>
     </h:body>
 </ui:composition>

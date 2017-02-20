@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
 public class GeradorMensagem implements Serializable {
 
     public void gerar(String titulo, String mensagem, FacesMessage.Severity severidade) {
-        FacesContext.getCurrentInstance().addMessage("", new FacesMessage(severidade, titulo, mensagem));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severidade, titulo, mensagem));
     }
 
     public void info(String mensagem) {
