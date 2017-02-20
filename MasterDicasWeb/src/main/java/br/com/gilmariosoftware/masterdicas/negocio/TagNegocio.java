@@ -24,7 +24,7 @@ public class TagNegocio implements Serializable {
     }
 
     public void removerTag(Tag tag) throws Exception {
-        dao.excluir(tag);
+        dao.excluir(Tag.class, tag.getNome());
     }
 
     public List<Tag> buscarPor(String nome) throws Exception {

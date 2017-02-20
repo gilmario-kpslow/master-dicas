@@ -1,58 +1,43 @@
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template/template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:t="http://xmlns.jcp.org/jsf/composite/componentes"
+                xmlns:t="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="conteudo">
         <h:form id="dica_frm">
-            <t:outputMensagens />
-            <t:panel titulo="Registrar Dica" id="panel">
+            <t:outputMensagens/>
+            <t:card titulo="Registrar Dica" id="panel">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <h:outputLabel value="Titulo" for="titulo" styleClass="label label-primary"/>
-                        <h:message for="titulo" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                        <div>
-                            <h:inputText value="#{dicaMB.dica.titulo}" id="titulo" requiredMessage="Informe um titulo" required="true" styleClass="form-control">
-                                <f:passThroughAttribute value="Título ex: Como usar o Git" name="placeholder"/>
-                            </h:inputText>
-                        </div>
+                    <div class="col l6 m6 input-field">
+                        <h:outputLabel value="Titulo" for="titulo" styleClass="active"/>
+                        <h:inputText value="#{dicaMB.dica.titulo}" id="titulo" requiredMessage="Informe um titulo" required="true" styleClass="form-control">
+                            <f:passThroughAttribute value="Título ex: Como usar o Git" name="placeholder"/>
+                            <f:passThroughAttribute value="text" name="type"/>
+                        </h:inputText>
+                        <h:message for="titulo" styleClass="fa fa-ban red-text" showDetail="false" showSummary="true" />
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                        <h:outputLabel value="Autor" for="autor" styleClass="label label-primary"/>
-                        <h:message for="autor" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                        <div>
-                            <h:inputText value="#{dicaMB.dica.autor}" id="autor" styleClass="form-control">
-                                <f:passThroughAttribute value="Pode ser o seu nome" name="placeholder"/>
-                            </h:inputText>
-                        </div>
+                    <div class="col l12 m12 input-field">
+                        <h:outputLabel value="Descrição" for="descricao" styleClass="active"/>
+                        <h:inputTextarea value="#{dicaMB.dica.descricao}" styleClass="materialize-textarea" id="descricao" requiredMessage="Descreva alguma coisa" required="true"/>
+                        <h:message for="descricao" styleClass="fa fa-ban red-text" showDetail="false" showSummary="true" />
                     </div>
-                    <div class="col-lg-12 col-md-12">
-                        <h:outputLabel value="Descrição" for="descricao" styleClass="label label-primary"/>
-                        <h:message for="descricao" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                        <div>
-                            <h:inputTextarea value="#{dicaMB.dica.descricao}" id="descricao" requiredMessage="Descreva alguma coisa" required="true" styleClass="form-control"/>
-                        </div>
+                    <div class="col l12 m12">
+                        <h:outputLabel value="Referências" for="referencia" styleClass="active"/>
+                        <h:inputTextarea value="#{dicaMB.dica.referencias}" id="referencia" styleClass="materialize-textarea">
+                            <f:passThroughAttribute value="Links de referencia separados por virgula" name="placeholder"/>
+                        </h:inputTextarea>
+                        <h:message for="referencia" styleClass="fa fa-ban red-text" showDetail="false" showSummary="true" />
                     </div>
-                    <div class="col-lg-12 col-md-12">
-                        <h:outputLabel value="Referências" for="referencia" styleClass="label label-primary"/>
-                        <h:message for="referencia" styleClass="fa fa-ban text-danger" showDetail="false" showSummary="true" />
-                        <div>
-                            <h:inputTextarea value="#{dicaMB.dica.referencias}" id="referencia" styleClass="form-control">
-                                <f:passThroughAttribute value="Links de referencia separados por virgula" name="placeholder"/>
-                            </h:inputTextarea>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12">
-                        <h:outputLabel value="Tags" styleClass="label label-primary"/>
+                    <div class="col l12 m12">
+                        <h:outputLabel value="Tags" styleClass="active"/>
                         <div class="row">
-                            <div class="col-lg-12 col-md-12">
+                            <div class="col l12 m12">
                                 <h:panelGrid id="tags">
                                     <ui:repeat value="#{dicaMB.dica.tags}" var="tag">
-                                        <h:outputText value="#{tag.nome}" styleClass="badge tag-nome"/>
+                                        <t:tag tag="#{tag.nome}"/>
                                     </ui:repeat>
                                 </h:panelGrid>
                             </div>
@@ -62,23 +47,23 @@
                 <f:facet name="footer">
                     <div class="row">
                         <div  class="col-lg-12 col-md-12">
-                            <h:commandLink styleClass="btn btn-primary fa fa-plus" title="Adicionar Tag" value=" Adicionar Tags " immediate="true" onclick="$('#tagdialog').modal('show');">
-                                <f:ajax event="click" render="none" execute="@this"/>
-                            </h:commandLink>
-                            <h:commandLink styleClass="btn btn-primary fa fa-save" title="Salvar" value=" Salvar ">
+                            <a class="btn" title="Adicionar Tag" immediate="true" onclick="$('#tagdialog').modal('open');" href="#!">
+                                <i class="fa fa-plus left"></i>
+                            </a>
+                            <h:commandLink styleClass="btn" title="Salvar" value=" Salvar ">
+                                <i class="fa fa-save left"></i>
                                 <f:ajax event="click" render="@form" execute="@form" listener="#{dicaMB.salvar()}"/>
                             </h:commandLink>
                         </div>
                     </div>
                 </f:facet>
-            </t:panel>
-
+            </t:card>
         </h:form>
         <t:dialog id_dialog="tagdialog" titulo="Incluir tag">
             <t:tags>
-                <h:commandLink onclick="$('#tagdialog').modal('hide');">
-                    <span class="fa fa-plus"></span>
-                    <f:ajax event="click" execute="@this" render=":dica_frm:panel:tags" listener="#{dicaMB.adicionaTag(elemento)}" />
+                <h:commandLink onclick="$('#tagdialog').modal('close');" styleClass="btn-flat waves-effect waves-light">
+                    <i class="fa fa-check"></i>
+                    <f:ajax event="click" execute="@this" render=":dica_frm:panel:tags" listener="#{dicaMB.adicionaTag(tag)}" />
                 </h:commandLink>
             </t:tags>
         </t:dialog>

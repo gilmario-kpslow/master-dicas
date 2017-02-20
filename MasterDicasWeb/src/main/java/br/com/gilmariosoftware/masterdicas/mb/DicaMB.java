@@ -53,7 +53,7 @@ public class DicaMB implements Serializable {
 
     public void adicionaTag(Tag tag) {
         if (!dica.getTags().contains(tag)) {
-            dica.getTags().add(tag);
+            dica.addTag(tag);
         }
     }
 

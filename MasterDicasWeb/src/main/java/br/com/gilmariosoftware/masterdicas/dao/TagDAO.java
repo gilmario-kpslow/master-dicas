@@ -20,7 +20,7 @@ public class TagDAO extends DAO<Tag, String> implements Serializable {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Tag> query = builder.createQuery(Tag.class);
         Root<Tag> tagRoot = query.from(Tag.class);
-        query.where(builder.equal(tagRoot.get(Tag_.nome), nome + "%"));
+        query.where(builder.like(tagRoot.get(Tag_.nome), nome + "%"));
         query.orderBy(builder.asc(tagRoot.get(Tag_.nome)));
         return getEntityManager().createQuery(query).setMaxResults(25).getResultList();
     }

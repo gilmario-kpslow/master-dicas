@@ -68,3 +68,23 @@
     width: 100%;
     margin: 0;
 }
+
+.text-uppercase{
+    text-transform: uppercase;
+}
+
+.tag{
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #00695c;
+    border-radius: 15px;
+    min-width: 100px;
+    text-align: center;
+    transition-duration: 2s;
+}
+
+.tag:hover{
+    transition-duration: 2s;
+    font-size: 24pt;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:t="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+        <cc:attribute name="tag"/>
+    </cc:interface>
+    <cc:implementation>
+        <div class="left hoverable tag">
+            <i class="fa fa-tag left-align"></i>
+            <span class="text-uppercase">#{cc.attrs.tag}</span>
+        </div>
+    </cc:implementation>
+</ui:composition>
+

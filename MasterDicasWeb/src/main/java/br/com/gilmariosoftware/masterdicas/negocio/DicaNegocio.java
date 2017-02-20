@@ -30,7 +30,7 @@ public class DicaNegocio implements Serializable {
     }
 
     public void removerDica(Dica dica) throws Exception {
-        dao.excluir(dica);
+        dao.excluir(Dica.class, dica.getId());
     }
 
     public List<Dica> buscarPor(List<Tag> tags, String titulo) throws Exception {

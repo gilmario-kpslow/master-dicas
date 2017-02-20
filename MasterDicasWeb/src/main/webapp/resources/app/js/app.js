@@ -23,3 +23,9 @@ function mostrarMenu(id, event) {
         });
     }
 }
+
+
+$(document).ready(function () {
+    $('.modal').modal();
+    $(".button-collapse").sideNav();
+});

@@ -27,8 +27,8 @@ public abstract class DAO<T, PK extends Serializable> {
         return (T) getEntityManager().merge(t);
     }
 
-    public void excluir(T t) {
-        getEntityManager().refresh(t);
+    public void excluir(Class<T> entidade, PK id) {
+        T t = carregar(entidade, id);
         getEntityManager().remove(t);
     }
 

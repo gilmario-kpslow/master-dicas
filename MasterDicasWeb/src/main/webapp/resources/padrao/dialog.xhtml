@@ -12,19 +12,10 @@
         <cc:attribute name="onshow" default=""/>
     </cc:interface>
     <cc:implementation>
-        <div class="modal fade" id="#{cc.attrs.id_dialog}" tabindex="-1" role="dialog">
+        <div class="modal fade" id="#{cc.attrs.id_dialog}" tabindex="-1" role="dialog" style="width: 900px;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-primary">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="fa fa-times"></span></button>
-                        <h4 class="modal-title"><span class="#{cc.attrs.icon}"></span> #{cc.attrs.titulo}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <cc:insertChildren/>
-                    </div>
-                    <div class="modal-footer">
-                        <cc:renderFacet name="rodape"/>
-                    </div>
+                    <cc:insertChildren/>
                 </div>
             </div>
         </div>
