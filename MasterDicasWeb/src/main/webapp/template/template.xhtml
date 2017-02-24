@@ -10,8 +10,6 @@
         <title>#{conf['app.titulo']}</title>
         <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <!--<link rel="stylesheet" href="{application.contextPath}/resources/bootstrap/css/bootstrap.min.css"/>-->
-        <!--<link rel="stylesheet" href="{application.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css"/>-->
         <link rel="stylesheet" href="#{application.contextPath}/resources/app/css/normalize.css"/>
         <link rel="stylesheet" href="#{application.contextPath}/resources/materialize/css/materialize.css"/>
         <link rel="stylesheet" href="#{application.contextPath}/resources/font-awesome/css/font-awesome.min.css" />
@@ -23,12 +21,9 @@
 
             <ui:insert name="cabecalho">
                 <header class="green lighten-1">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col l2 center s12 ">
-                                <!--<h:graphicImage alt="Imagem" styleClass="responsive-img" library="imagens" name="icone.png" width="100"/>-->
-                            </div>
-                            <div class="col l10 s12 center hide-on-large-only">
+                            <div class="col l12 s12 center">
                                 <h4 class="white-text">Dicas e Idéias</h4>
                                 <h5 class="white-text">Dicas e Idéias</h5>
                             </div>
@@ -37,20 +32,21 @@
                 </header>
             </ui:insert>
 
-            <div class="menu">
-                <ui:insert name="menu">
-                    <div class="container-fluid">
+            <div class="container-fluid">
+                <div class="row">
+                    <ui:insert name="menu">
                         <nav class="teal darken-4">
                             <div class="nav-wrapper container ">
-                                <ul class="left hide-on-med-and-down" id="main-menu">
+                                <ul class="left-align hide-on-med-and-down" id="main-menu">
                                     <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Ir para o início">
-                                        <a href="#{application.contextPath}" class=""><span class="fa fa-home fa-2x fa-flip-horizontal"></span>
+                                        <a href="#{application.contextPath}"><span class="fa fa-home fa-2x fa-flip-horizontal"></span>
                                         </a></li>
                                     <li><a class="dropdown-button" href="#!" data-activates="menu-criar">Criar<i class="fa fa-caret-down"></i></a></li>
+                                    <li><h:link outcome="/web/senha">Autorizar<i class="fa fa-sign-in"></i></h:link></li>
                                 </ul>
                                 <ul class="right hide-on-med-and-down">
                                     <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Sair do sistema">
-                                        <a href="#{application.contextPath}/logout" class=""><span class="fa fa-sign-out fa-2x fa-flip-horizontal"></span></a></li>
+                                        <a href="#{application.contextPath}/logout"><span class="fa fa-sign-out fa-2x fa-flip-horizontal"></span></a></li>
                                 </ul>
                                 <ul class="side-nav" id="mobile-menu">
                                     <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Ir para o início">
@@ -60,29 +56,33 @@
                                     <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Sair do sistema">
                                         <a href="#{application.contextPath}/logout" class=""><span class="fa fa-sign-out fa-2x fa-flip-horizontal"></span></a></li>
                                 </ul>
-                                <a href="#" data-activates="mobile-menu" class="right button-collapse"><i class="fa fa-align-justify fa-2x"></i></a>
+                                <a href="#!" data-activates="mobile-menu" class="right button-collapse"><i class="fa fa-align-justify fa-2x"></i></a>
                             </div>
+                            <ul id="menu-criar" class="dropdown-content">
+                                <li><h:link outcome="/web/tag"  value="Tag"/></li>
+                                <li class="divider"></li>
+                                <li><h:link outcome="/sec/dica" value="Dica"></h:link></li>
+                                <li class="divider"></li>
+                                <li><h:link outcome="/web/usuario" value="Usuario"></h:link></li>
+                                <li class="divider"></li>
+                            </ul>
+                            <ul id="menu-criar-mobile" class="dropdown-content">
+                                <li><h:link outcome="/web/tag"  value="Tag"/></li>
+                                <li class="divider"></li>
+                                <li><h:link outcome="/web/dica" value="Dica"></h:link></li>
+                            </ul>
                         </nav>
-                        <!-- Dropdown Structure -->
-                        <ul id="menu-criar" class="dropdown-content">
-                            <li><h:link outcome="/web/tag"  value="Tag"/></li>
-                            <li class="divider"></li>
-                            <li><h:link outcome="/web/dica" value="Dica"></h:link></li>
-                            <li class="divider"></li>
-                            <!--<li><h:link outcome="/web/dica" value="Dica"></h:link></li>-->
-                        </ul>
-                        <ul id="menu-criar-mobile" class="dropdown-content">
-                            <li><h:link outcome="/web/tag"  value="Tag"/></li>
-                            <li class="divider"></li>
-                            <li><h:link outcome="/web/dica" value="Dica"></h:link></li>
-                        </ul>
-                    </div>
-                </ui:insert>
+
+                    </ui:insert>
+                </div>
             </div>
         </header>
-        <main>
-            <div class="container altura-minima">
-                <ui:insert name="conteudo">Conteudo</ui:insert>
+        <main class="altura-minima">
+            <div class="container">
+                <ui:insert name="conteudo"></ui:insert>
+            </div>
+            <div class="container-fluid">
+                <ui:insert name="conteudo-fluid"></ui:insert>
             </div>
         </main>
         <ui:insert name="rodape">

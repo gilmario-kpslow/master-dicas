@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="conteudo">
+        <c:outputMensagens cor="red darken-2" icon="fa fa-ban" titulo="Erro de Login">
+            <h:outputText value="#{request.getAttribute('mensagem')}"/>
+        </c:outputMensagens>
+        <section class="login">
+            <form action="#{application.contextPath}/logar" method="POST" class="container">
+                <div class="row">
+                    <div class="col l6 offset-l3 m8 offset-m2">
+                        <ui:fragment rendered="#{request.getAttribute('mensagem') != null}">
+                            <div class="red lighten-1 text-bold white-text" style="padding: 10px; border-radius: 2px;">
+                                <i class="fa fa-ban text-bold"></i> ${request.getAttribute('mensagem')}
+                            </div>
+                        </ui:fragment>
+                        <c:card titulo="Login" icon="fa fa-user">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col s12 input-field">
+                                        <label for="login">Login</label>
+                                        <input name="login_" id="login" autocomplete="off" required="required" class="validate" type="text"/>
+                                    </div>
+                                    <div class="col s12 input-field">
+                                        <label for="senha">Senha</label>
+                                        <input name="senha_" id="senha" required="required" autocomplete="off" class="validate" type="password"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <f:facet name="footer">
+                                <button type="submit" class="waves-effect waves-light btn teal"><i class="fa fa-check left"></i>Login</button>
+                            </f:facet>
+                        </c:card>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </ui:define>
+</ui:composition>

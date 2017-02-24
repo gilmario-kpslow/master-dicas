@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:t="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="conteudo">
+        <h:form id="edite_tag_form">
+            <t:card titulo="Cadastrar Usuário" icon="fa fa-user">
+                <div class="container-fluid">
+                    <t:outputMensagens />
+                    <div class="row">
+                        <div class="col l4 m4 input-field">
+                            <h:inputText value="#{usuarioCadastroView.usuario.nome}" id="nome" requiredMessage="Informe um nome" required="true"/>
+                            <h:message for="nome" styleClass="fa fa-ban red-text" showDetail="false" showSummary="true" />
+                            <label for="nome" class="active">Nome</label>
+                        </div>
+                        <div class="col l8 m8 input-field">
+                            <h:inputText value="#{usuarioCadastroView.usuario.apelido}" id="apelido" requiredMessage="Informe um apelido" required="true"/>
+                            <h:message for="apelido" styleClass="fa fa-ban red-text" showDetail="false" showSummary="true" />
+                            <label for="apelido" class="active">Apelido</label>
+                        </div>
+                        <div class="col l12 m12 input-field">
+                            <h:inputText value="#{usuarioCadastroView.usuario.login}" id="login" requiredMessage="Informe um login" required="true" styleClass="validate">
+                                <f:passThroughAttribute name="type" value="text"/>
+                            </h:inputText>
+                            <h:message for="login" styleClass="fa fa-ban red-text" showDetail="false" showSummary="true" />
+                            <label for="login" class="active">Login</label>
+                        </div>
+                        <div class="col l12 m12 input-field">
+                            <h:inputText value="#{usuarioCadastroView.usuario.email}" id="email" requiredMessage="Informe um email" required="true" styleClass="validate">
+                                <f:passThroughAttribute name="type" value="email"/>
+                            </h:inputText>
+                            <h:message for="email" styleClass="fa fa-ban red-text" showDetail="false" showSummary="true" />
+                            <label for="email" class="active">Email</label>
+                        </div>
+                    </div>
+                    <h:commandLink styleClass="btn btn-large btn-floating right waves-effect waves-light tooltipped z-depth-1-half">
+                        <i class="fa fa-save fa-2x"></i>
+                        <f:ajax event="click" render="@form" execute="@form" listener="#{usuarioCadastroView.salvar()}"/>
+                        <f:passThroughAttribute name="data-position" value="top"/>
+                        <f:passThroughAttribute name="data-delay" value="500"/>
+                        <f:passThroughAttribute name="data-tooltip" value="Salvar"/>
+                    </h:commandLink>
+                    <f:facet name="footer">
+                        <div class="row">
+                            <div class="col">
+
+                            </div>
+                        </div>
+                    </f:facet>
+                </div>
+            </t:card>
+        </h:form>
+    </ui:define>
+</ui:composition>

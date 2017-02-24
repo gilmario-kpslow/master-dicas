@@ -5,10 +5,12 @@
  */
 package br.com.gilmariosoftware.masterdicas.dominio;
 
+import br.com.gilmariosoftware.masterdicas.util.CriptografiaUtil;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,6 +35,8 @@ public class Senha implements Serializable {
     private String hashing;
     @Column(nullable = false)
     private Boolean ativo;
+    @Column(nullable = true)
+    @Convert(converter = LocalDateConverter.class)
     private LocalDate validade;
 
     public Senha() {
@@ -69,6 +73,10 @@ public class Senha implements Serializable {
 
     public void setValidade(LocalDate validade) {
         this.validade = validade;
+    }
+
+    public void criptografar() {
+        this.setHashing(CriptografiaUtil.SHA1(hashing));
     }
 
     @Override

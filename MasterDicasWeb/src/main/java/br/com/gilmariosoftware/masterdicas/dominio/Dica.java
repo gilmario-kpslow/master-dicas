@@ -1,13 +1,17 @@
 package br.com.gilmariosoftware.masterdicas.dominio;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -39,7 +43,8 @@ public class Dica implements Serializable {
     private String titulo;
     @XmlElement(required = true)
     @Column(nullable = false)
-    private LocalDateTime dataCadastro;
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate dataCadastro;
     @JoinColumn(nullable = false)
     @ManyToOne
     private Usuario autor;
@@ -56,7 +61,7 @@ public class Dica implements Serializable {
 
     public Dica() {
         tags = new ArrayList<>();
-        statusDica = StatusDica.Ativa;
+        statusDica = StatusDica.ATIVA;
     }
 
     public void addTag(Tag tag) {
@@ -83,11 +88,15 @@ public class Dica implements Serializable {
         this.titulo = titulo;
     }
 
-    public LocalDateTime getDataCadastro() {
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDateTime dataCadastro) {
+    public String getDataCadastroFormatada() {
+        return dataCadastro.format(new DateTimeFormatterBuilder().appendPattern("dd/MM/yyyy").toFormatter());
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 
@@ -131,12 +140,12 @@ public class Dica implements Serializable {
         return observacao;
     }
 
-    public void setObervacao(String observacao) {
+    public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
 
     public enum StatusDica {
-        Ativa, Inativa
+        ATIVA, INATIVA
     }
 
     @Override

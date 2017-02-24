@@ -3,48 +3,100 @@
                 template="/template/template.xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:con="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <ui:define name="conteudo">
-        <div class="row">
-            <h:messages errorClass="alert-danger" class="alert" fatalClass="alert-danger" infoClass="alert-info" warnClass="alert-warning"/>
-            <ui:repeat value="#{indexMB.dicas}" var="dica">
-                <div class="col-md-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <span class="panel-title">
-                                <h:outputText value="#{dica.titulo}"/>
-                            </span>
-                            <span>
-                                <h:link outcome="index">
-                                    <span class="fa fa-search text-success"></span>
-                                </h:link>
-                            </span>
-                        </div>
-                        <div class="panel-body">
-                            <div>
-                                <h:outputText value="#{dica.descricao}" escape="true" />
+    <ui:define name="conteudo-fluid">
+        <h:messages errorClass="alert-danger" class="alert" fatalClass="alert-danger" infoClass="alert-info" warnClass="alert-warning"/>
+        <ui:fragment rendered="#{usuarioSession.isLogado()}">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <h5>Bem vindo!!</h5>
+                        <h4>#{usuarioSession.usuario.nome}</h4>
+                    </div>
+                </div>
+            </div>
+        </ui:fragment>
+        <div class="container-fluid light-blue lighten-5">
+            <div class="row">
+                <ui:repeat value="#{indexMB.dicas}" var="dica">
+                    <div class="col l3 m6 s12">
+                        <div class="card hoverable">
+                            <div class="card-content altura-card">
+                                <div class="activator card-title center grey-text text-darken-4">
+                                    <i class="fa fa-caret-down right"></i>
+                                    <span class="peso-500">${dica.titulo}</span>
+                                </div>
+                                <div>
+                                    <label>Autor.</label>
+                                    <span class="grey-text darken-4 right text-bold">${dica.autor.nome}</span><br/>
+                                    <label>Cadastro.</label>
+                                    <span class="grey-text darken-4 right text-bold">${dica.dataCadastroFormatada}</span>
+                                </div>
+                                <div>
+                                    <h6 class="grey-text">Sobre:</h6>
+                                    <h:outputText value="#{dica.observacao}"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="panel-footer">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h:outputLabel value="#{dica.autor}"/>
+                            <div class="card-reveal">
+                                <div class="activator card-title center grey-text text-darken-4">
+                                    <i class="fa fa-caret-up right"></i>
+                                    <span class="peso-500">${dica.titulo}</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <h:outputLabel value="#{dica.dataCadastro}"/>
+                                <div>
+                                    <label>Autor.</label>
+                                    <span class="grey-text darken-4 right text-bold">${dica.autor.nome}</span><br/>
+                                    <label>Cadastro.</label>
+                                    <span class="grey-text darken-4 right text-bold">${dica.dataCadastroFormatada}</span>
                                 </div>
-                                <div class="col-md-12">
-                                    <h:outputText value="TAGS: " styleClass="label label-primary"/>
+                                <div>
+                                    <h6 class="grey-text">Referências</h6>
+                                    <h:outputText value="#{dica.referencias}"/>
+                                </div>
+                                <div class="tags">
                                     <ui:repeat value="#{dica.tags}" var="tag">
-                                        <h:outputText value="#{tag.nome}" styleClass="badge text-primary tag-nome"/>
+                                        <div class="chip">${tag.nome}</div>
                                     </ui:repeat>
                                 </div>
                             </div>
+                            <div class="card-action grey lighten-4">
+                                <h:form>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col l4 m4 s4">
+                                                <h:commandLink styleClass="btn green waves-effect waves-light tooltipped hoverable">
+                                                    <i class="fa fa-eye"></i>
+                                                    <f:passThroughAttribute name="data-position" value="top"/>
+                                                    <f:passThroughAttribute name="data-delay" value="500"/>
+                                                    <f:passThroughAttribute name="data-tooltip" value="Ver dica"/>
+                                                </h:commandLink>
+                                            </div>
+                                            <div class="col l4 m4 s4">
+                                                <h:commandLink styleClass="btn cyan waves-effect waves-light tooltipped hoverable">
+                                                    <i class="fa fa-edit"></i>
+                                                    <f:passThroughAttribute name="data-position" value="top"/>
+                                                    <f:passThroughAttribute name="data-delay" value="500"/>
+                                                    <f:passThroughAttribute name="data-tooltip" value="Editar dica"/>
+                                                </h:commandLink>
+                                            </div>
+                                            <div class="col l4 m4 s4">
+                                                <h:commandLink styleClass="btn red waves-effect waves-light tooltipped hoverable">
+                                                    <i class="fa fa-trash"></i>
+                                                    <f:passThroughAttribute name="data-position" value="top"/>
+                                                    <f:passThroughAttribute name="data-delay" value="500"/>
+                                                    <f:passThroughAttribute name="data-tooltip" value="Excluir dica"/>
+                                                </h:commandLink>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </ui:repeat>
+                </ui:repeat>
+            </div>
         </div>
     </ui:define>
 </ui:composition>

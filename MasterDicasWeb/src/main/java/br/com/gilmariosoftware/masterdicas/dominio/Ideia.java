@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,6 +38,7 @@ public class Ideia implements Serializable {
     private String nome;
     @XmlElement(required = true)
     @Column(nullable = false)
+    @Convert(converter = LocalDateConverter.class)
     private LocalDate dataCadastro;
     @JoinColumn(nullable = false)
     @ManyToOne

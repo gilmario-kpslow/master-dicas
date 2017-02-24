@@ -28,4 +28,5 @@ function mostrarMenu(id, event) {
 $(document).ready(function () {
     $('.modal').modal();
     $(".button-collapse").sideNav();
+    $('.tooltipped').tooltip({delay: 150});
 });

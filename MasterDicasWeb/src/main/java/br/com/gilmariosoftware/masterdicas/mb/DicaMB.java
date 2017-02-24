@@ -3,11 +3,14 @@ package br.com.gilmariosoftware.masterdicas.mb;
 import br.com.gilmariosoftware.masterdicas.dominio.Dica;
 import br.com.gilmariosoftware.masterdicas.dominio.Tag;
 import br.com.gilmariosoftware.masterdicas.negocio.DicaNegocio;
+import br.com.gilmariosoftware.masterdicas.seguranca.UsuarioSession;
 import br.com.gilmariosoftware.masterdicas.util.GeradorMensagem;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -26,6 +29,14 @@ public class DicaMB implements Serializable {
     private String titulo = "";
     @EJB
     private GeradorMensagem mensagem;
+    @Inject
+    private UsuarioSession session;
+
+    @PostConstruct
+    public void iniciar() {
+        dica = new Dica();
+        dica.setAutor(session.getUsuario());
+    }
 
     public void salvar() {
         try {

@@ -3,7 +3,7 @@
     Author     : gilmario
 */
 .altura-minima{
-    min-height: 400px;
+    min-height: 450px;
 }
 
 .navbar-primary{
@@ -73,18 +73,44 @@
     text-transform: uppercase;
 }
 
+.peso-500{
+    font-weight: 500;
+}
+.peso-900{
+    font-weight: 900;
+}
+
 .tag{
+    text-transform: uppercase;
     color: white;
     font-weight: bold;
     padding: 10px;
     background-color: #00695c;
-    border-radius: 15px;
+    border-radius: 5px;
     min-width: 100px;
     text-align: center;
-    transition-duration: 2s;
+    transition-duration: 1s;
+    float: left;
 }
 
 .tag:hover{
-    transition-duration: 2s;
+    transition-duration: 1s;
     font-size: 24pt;
+    background-color: #cc695c;
+    min-width: 100%;
+
+}
+
+.tags{
+    margin-top: 20px;
+}
+
+.descricao-dica{
+    height: auto;
+
+}
+
+.altura-card{
+    min-height: 300px;
+    height: auto;
 }

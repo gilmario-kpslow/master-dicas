@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,20 +31,33 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Column(nullable = false)
+    private Long id;
+    @Column(nullable = false, unique = true)
     private String login;
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
     private String apelido;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
-    @JoinColumn(nullable = false)
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PerfilUsuario perfil;
+    @JoinColumn(nullable = true)
     @OneToOne
     private Senha senha;
 
     public Usuario() {
+        perfil = PerfilUsuario.USUARIO;
+    }
+
+    public PerfilUsuario getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(PerfilUsuario perfil) {
+        this.perfil = perfil;
     }
 
     public Long getId() {

@@ -25,9 +25,11 @@
                                     <f:facet name="header">
                                         <h:outputText value="Ação"/>
                                     </f:facet>
+                                    <button></button>
                                     <h:commandLink styleClass="btn-flat red-text hoverable">
                                         <span class="fa fa-trash"></span>
                                         <f:ajax event="click" execute="@this" render="@form" listener="#{tagMB.remover(tag)}"/>
+                                        <f:ajax event="touch" execute="@this" render="@form" listener="#{tagMB.remover(tag)}"/>
                                     </h:commandLink>
                                     <h:commandLink styleClass="btn-flat blue-text hoverable">
                                         <span class="fa fa-pencil"></span>
