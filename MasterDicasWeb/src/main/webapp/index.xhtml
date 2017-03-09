@@ -19,85 +19,123 @@
                 </div>
             </div>
         </ui:fragment>
-        <div class="container-fluid light-blue lighten-5">
-            <div class="row">
-                <ui:repeat value="#{indexMB.dicas}" var="dica">
-                    <div class="col l3 m6 s12">
-                        <div class="card hoverable">
-                            <div class="card-content altura-card">
-                                <div class="activator card-title center grey-text text-darken-4">
-                                    <i class="fa fa-caret-down right"></i>
-                                    <span class="peso-500">${dica.titulo}</span>
+        <h:form>
+            <div class="container-fluid light-blue lighten-5">
+                <div class="row">
+                    <ui:repeat value="#{indexMB.dicas}" var="dica">
+                        <div class="col l3 m6 s12">
+                            <div class="card hoverable">
+                                <div class="card-content altura-card">
+                                    <div class="activator card-title center grey-text text-darken-4">
+                                        <i class="fa fa-caret-down right"></i>
+                                        <span class="peso-500">${dica.titulo}</span>
+                                    </div>
+                                    <div>
+                                        <label>Autor.</label>
+                                        <span class="grey-text darken-4 right text-bold">${dica.autor.nome}</span><br/>
+                                        <label>Cadastro.</label>
+                                        <span class="grey-text darken-4 right text-bold">${dica.dataCadastroFormatada}</span>
+                                    </div>
+                                    <div>
+                                        <h6 class="grey-text">Resumo:</h6>
+                                        <h:outputText value="#{dica.observacao}"/>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label>Autor.</label>
-                                    <span class="grey-text darken-4 right text-bold">${dica.autor.nome}</span><br/>
-                                    <label>Cadastro.</label>
-                                    <span class="grey-text darken-4 right text-bold">${dica.dataCadastroFormatada}</span>
+                                <div class="card-reveal">
+                                    <div class="activator card-title center grey-text text-darken-4">
+                                        <i class="fa fa-caret-up right"></i>
+                                        <span class="peso-500">${dica.titulo}</span>
+                                    </div>
+                                    <div>
+                                        <label>Autor.</label>
+                                        <span class="grey-text darken-4 right text-bold">${dica.autor.nome}</span><br/>
+                                        <label>Cadastro.</label>
+                                        <span class="grey-text darken-4 right text-bold">${dica.dataCadastroFormatada}</span>
+                                    </div>
+                                    <div>
+                                        <h6 class="grey-text">Referências</h6>
+                                        <h:outputText value="#{dica.referencias}"/>
+                                    </div>
+                                    <div class="tags">
+                                        <ui:repeat value="#{dica.tags}" var="tag">
+                                            <div class="chip">${tag.nome}</div>
+                                        </ui:repeat>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h6 class="grey-text">Sobre:</h6>
-                                    <h:outputText value="#{dica.observacao}"/>
-                                </div>
-                            </div>
-                            <div class="card-reveal">
-                                <div class="activator card-title center grey-text text-darken-4">
-                                    <i class="fa fa-caret-up right"></i>
-                                    <span class="peso-500">${dica.titulo}</span>
-                                </div>
-                                <div>
-                                    <label>Autor.</label>
-                                    <span class="grey-text darken-4 right text-bold">${dica.autor.nome}</span><br/>
-                                    <label>Cadastro.</label>
-                                    <span class="grey-text darken-4 right text-bold">${dica.dataCadastroFormatada}</span>
-                                </div>
-                                <div>
-                                    <h6 class="grey-text">Referências</h6>
-                                    <h:outputText value="#{dica.referencias}"/>
-                                </div>
-                                <div class="tags">
-                                    <ui:repeat value="#{dica.tags}" var="tag">
-                                        <div class="chip">${tag.nome}</div>
-                                    </ui:repeat>
-                                </div>
-                            </div>
-                            <div class="card-action grey lighten-4">
-                                <h:form>
+                                <div class="card-action grey lighten-4">
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col l4 m4 s4">
                                                 <h:commandLink styleClass="btn green waves-effect waves-light tooltipped hoverable">
+                                                    <f:ajax listener="#{indexMB.setDica(dica)}" execute="@this" render="conteudo" event="click" onevent="verDica"/>
                                                     <i class="fa fa-eye"></i>
                                                     <f:passThroughAttribute name="data-position" value="top"/>
                                                     <f:passThroughAttribute name="data-delay" value="500"/>
                                                     <f:passThroughAttribute name="data-tooltip" value="Ver dica"/>
                                                 </h:commandLink>
                                             </div>
-                                            <div class="col l4 m4 s4">
-                                                <h:commandLink styleClass="btn cyan waves-effect waves-light tooltipped hoverable">
-                                                    <i class="fa fa-edit"></i>
-                                                    <f:passThroughAttribute name="data-position" value="top"/>
-                                                    <f:passThroughAttribute name="data-delay" value="500"/>
-                                                    <f:passThroughAttribute name="data-tooltip" value="Editar dica"/>
-                                                </h:commandLink>
-                                            </div>
-                                            <div class="col l4 m4 s4">
-                                                <h:commandLink styleClass="btn red waves-effect waves-light tooltipped hoverable">
-                                                    <i class="fa fa-trash"></i>
-                                                    <f:passThroughAttribute name="data-position" value="top"/>
-                                                    <f:passThroughAttribute name="data-delay" value="500"/>
-                                                    <f:passThroughAttribute name="data-tooltip" value="Excluir dica"/>
-                                                </h:commandLink>
-                                            </div>
+                                            <ui:fragment rendered="#{usuarioSession.logado and usuarioSession.usuario.equals(dica.autor)}">
+                                                <div class="col l4 m4 s4">
+                                                    <h:commandLink styleClass="btn cyan waves-effect waves-light tooltipped hoverable">
+                                                        <i class="fa fa-edit"></i>
+                                                        <f:passThroughAttribute name="data-position" value="top"/>
+                                                        <f:passThroughAttribute name="data-delay" value="500"/>
+                                                        <f:passThroughAttribute name="data-tooltip" value="Editar dica"/>
+                                                    </h:commandLink>
+                                                </div>
+                                                <div class="col l4 m4 s4">
+                                                    <h:commandLink styleClass="btn red waves-effect waves-light tooltipped hoverable">
+                                                        <i class="fa fa-trash"></i>
+                                                        <f:passThroughAttribute name="data-position" value="top"/>
+                                                        <f:passThroughAttribute name="data-delay" value="500"/>
+                                                        <f:passThroughAttribute name="data-tooltip" value="Excluir dica"/>
+                                                    </h:commandLink>
+                                                </div>
+                                            </ui:fragment>
                                         </div>
                                     </div>
-                                </h:form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </ui:repeat>
+                    </ui:repeat>
+                </div>
+            </div>
+        </h:form>
+        <div class="modal fade modal-fixed-footer" id="dialog_ver" tabindex="-1" role="dialog" style="width: 900px;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <h:form id="conteudo">
+                        <h4 class="center green darken-2 white-text">${indexMB.dica.titulo}</h4>
+                        <div>
+                            <div>
+                                <label>Autor.</label>
+                                <span class="grey-text darken-4 right text-bold">${indexMB.dica.autor.nome}</span><br/>
+                                <label>Cadastro.</label>
+                                <span class="grey-text darken-4 right text-bold">${indexMB.dica.dataCadastroFormatada}</span>
+                            </div>
+                            <div class="text-bold">
+                                <h:outputText value="#{indexMB.dica.observacao}"/>
+                            </div>
+                            <h:outputText value="#{indexMB.dica.descricao}" escape="false"/>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat grey lighten-2">
+                        <i class="fa fa-close"></i>
+                        Sair</a>
+                </div>
             </div>
         </div>
+    </ui:define>
+    <ui:define name="scripts">
+        <script>
+            function verDica(evento) {
+                if (evento.status == 'success') {
+                    $('#dialog_ver').modal('open');
+                }
+            }
+        </script>
     </ui:define>
 </ui:composition>
 
