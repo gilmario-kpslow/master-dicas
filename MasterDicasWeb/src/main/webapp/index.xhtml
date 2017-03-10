@@ -4,10 +4,10 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:con="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:app="http://xmlns.jcp.org/jsf/composite/app"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <ui:define name="conteudo-fluid">
+    <ui:define name="conteudo">
         <h:messages errorClass="alert-danger" class="alert" fatalClass="alert-danger" infoClass="alert-info" warnClass="alert-warning"/>
         <ui:fragment rendered="#{usuarioSession.isLogado()}">
             <div class="container">
@@ -77,6 +77,7 @@
                                             <ui:fragment rendered="#{usuarioSession.logado and usuarioSession.usuario.equals(dica.autor)}">
                                                 <div class="col l4 m4 s4">
                                                     <h:commandLink styleClass="btn cyan waves-effect waves-light tooltipped hoverable">
+                                                        <f:ajax listener="#{dicaMB.setDica(dica)}" execute="@this" render=":dialoge:dica_:dica_frm" event="click" onevent="editarDica"/>
                                                         <i class="fa fa-edit"></i>
                                                         <f:passThroughAttribute name="data-position" value="top"/>
                                                         <f:passThroughAttribute name="data-delay" value="500"/>
@@ -127,12 +128,20 @@
                 </div>
             </div>
         </div>
+        <app:dialog id_dialog="dialog_editar" id="dialoge">
+            <app:dica id="dica_"/>
+        </app:dialog>
     </ui:define>
     <ui:define name="scripts">
         <script>
             function verDica(evento) {
                 if (evento.status == 'success') {
                     $('#dialog_ver').modal('open');
+                }
+            }
+            function editarDica(evento) {
+                if (evento.status == 'success') {
+                    $('#dialog_editar').modal('open');
                 }
             }
         </script>

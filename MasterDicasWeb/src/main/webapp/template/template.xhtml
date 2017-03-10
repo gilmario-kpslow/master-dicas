@@ -3,9 +3,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsf/composite/padrao"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite/app"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
     <h:head>
         <title>#{conf['app.titulo']}</title>
         <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
@@ -15,7 +14,6 @@
         <link rel="stylesheet" href="#{application.contextPath}/resources/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="#{application.contextPath}/resources/app/css/app.css"/>
     </h:head>
-
     <h:body>
         <ui:insert name="cabecalho">
             <header>
@@ -33,8 +31,15 @@
                         <li><h:link outcome="/sec/senha">Autorizar<i class="fa fa-sign-in"></i></h:link></li>
                     </ul>
                     <ul class="right hide-on-med-and-down">
-                        <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Sair do sistema">
-                            <a href="#{application.contextPath}/logout"><span class="fa fa-sign-out fa-2x fa-flip-horizontal"></span></a></li>
+
+                        <ui:fragment rendered="#{not usuarioSession.logado}">
+                            <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Identificar-se">
+                                <a href="#{application.contextPath}/login"><span class="fa fa-user fa-2x fa-flip-horizontal"></span></a></li>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{usuarioSession.logado}">
+                            <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Sair do sistema">
+                                <a href="#{application.contextPath}/logout"><span class="fa fa-sign-out fa-2x fa-flip-horizontal"></span></a></li>
+                        </ui:fragment>
                     </ul>
                     <ul class="side-nav" id="mobile-menu">
                         <li class="tooltipped" data-position="top" data-delay="500" data-tooltip="Ir para o início">
@@ -57,7 +62,7 @@
                 <ul id="menu-criar-mobile" class="dropdown-content">
                     <li><h:link outcome="/web/tag"  value="Tag"/></li>
                     <li class="divider"></li>
-                    <li><h:link outcome="/web/dica" value="Dica"></h:link></li>
+                    <li><h:link outcome="/sec/dica" value="Dica"></h:link></li>
                 </ul>
             </nav>
         </ui:insert>
@@ -81,8 +86,6 @@
         <h:outputScript library="materialize" name="js/bin/materialize.min.js"/>
         <h:outputScript library="app" name="js/app.js"/>
         <ui:insert name="scripts">
-
         </ui:insert>
     </h:body>
 </ui:composition>
-
